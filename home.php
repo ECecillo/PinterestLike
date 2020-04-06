@@ -72,12 +72,13 @@ if (isset($_POST["valider"])) {
         <ul>
           <li><a href="#">Home</a></li>
           <li><a href="#">Add Pictures</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#">More</a></li>
+          <li><a href="login.php">Login</a></li>
         </ul>
       </nav>
     </div>
   </header>
+
   <!-- Partie sur les images  -->
 
   <div class="category_paragraph">
