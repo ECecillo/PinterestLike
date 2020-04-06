@@ -17,36 +17,34 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `chat`
+-- Base de données :  `Projet`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `message`
+-- Structure de la table `Categorie`
 --
 
-CREATE TABLE IF NOT EXISTS `message` (
-  `auteur` varchar(255) NOT NULL,
-  `date` date NOT NULL,
-  `heure` time NOT NULL,
-  `valeur` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  PRIMARY KEY (`auteur`,`date`,`heure`,`valeur`)
+CREATE TABLE IF NOT EXISTS Categorie (
+  catId INT NOT NULL,
+  nomCat varchar(255) NOT NULL,
+  PRIMARY KEY(catId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `utilisateur`
+-- Structure de la table `photo`
 --
 
-CREATE TABLE IF NOT EXISTS `utilisateur` (
-  `pseudo` varchar(255) NOT NULL,
-  `mdp` varchar(255) NOT NULL,
-  `couleur` varchar(255) NOT NULL,
-  `etat` varchar(255) NOT NULL,
-  PRIMARY KEY (`pseudo`)
+CREATE TABLE IF NOT EXISTS Photo (
+  photoId int NOT NULL,
+  nomFich varchar(250) NOT NULL,
+  description varchar(250) NOT NULL,
+  catId int NOT NULL,
+  PRIMARY KEY (photoId),
+  FOREIGN KEY (catId) REFERENCES Categorie(catId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
