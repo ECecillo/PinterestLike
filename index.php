@@ -33,7 +33,7 @@ echo $stateMsg;
 
 <head>
   <meta charset="utf-8">
-  <title>Page Connexion Chat</title>
+  <title>Page d'accueil</title>
 </head>
 
 <body>
