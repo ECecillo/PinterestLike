@@ -47,6 +47,8 @@ if (isset($_POST["valider"])) {
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
   </script>
 
+  <!-- Logo -->
+  <link rel="icon" href="./img/pinter.png" type="image/icon type"> 
   <!-- Mon style -->
   <style>
     @import url('style.css');
