@@ -3,8 +3,8 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
 
 body {
-    background: rgb(224, 218, 218);
-    color: #fff;
+    background: rgba(233, 232, 232, 0.795);
+    color: var(--D10);
     font-family: 'Montserrat', sans-serif;
     font-size: 2rem;
 }
@@ -49,7 +49,7 @@ body::-webkit-scrollbar-thumb {
     --D8-RGB: 242, 242, 242;
     --D9: #22272b;
     --D9-RGB: 34, 39, 43;
-    --D10: #162d3d;
+    --D10: #28577a;
     --D10-RGB: 22, 45, 61;
     --D12-start: linear-gradient(to top rgba(22, 26, 31, 0.05) rgba(22, 26, 31, 0.15) 62% var(--D2));
     --D12-end: linear-gradient(to bottom rgba(22, 26, 31, 0.05) rgba(22, 26, 31, 0.15) 62% var(--D2));
@@ -173,12 +173,12 @@ body::-webkit-scrollbar-thumb {
     --purple: #a82dd1;
     --yellow: #fff565;
     /* Variable pour les images  -------------------------------------------------------------------*/
-    --bg-I1: url('https://store-images.s-microsoft.com/image/apps.24510.9007199267196977.0fa1befa-9d6a-4c75-9e31-5ea78fb46f4b.9e21efc3-f7a6-4853-a0de-1064dd239625?w=1400&h=875&q=90&format=jpg');
-    --bg-I2: url('https://i.ibb.co/rfT0Dmd/Screenshot-from-2020-03-28-17-44-16.png');
-    --bg-I3: url('https://i.ibb.co/zNY0jJV/Screenshot-from-2020-03-28-17-40-39.png');
-    --bg-I4: url('https://i.ibb.co/9h4djK3/Screenshot-from-2020-03-28-18-23-36.png');
-    --bg-I5: url('https://i.ibb.co/gPmt87J/Screenshot-from-2020-03-28-18-28-35.png');
-    --bg-I6: url('https://i.ibb.co/tJbf6FC/Screenshot-from-2020-03-28-18-53-39.png');
+    --bg-I1: url('https://images.unsplash.com/photo-1585858966705-2668b705fcb7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80');
+    --bg-I2: url('https://images.unsplash.com/photo-1545559054-8f4f9e855781?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80');
+    --bg-I3: url('https://images.unsplash.com/photo-1444464666168-49d633b86797?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80');
+    --bg-I4: url('https://images.unsplash.com/photo-1585974780732-05acf9f01c32?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=646&q=80');
+    --bg-I5: url('https://images.unsplash.com/photo-1584709521360-ff0f5bbda444?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=691&q=80');
+    --bg-I6: url('https://images.unsplash.com/photo-1557008075-7f2c5efa4cfd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=642&q=80');
     --bg-I7: url('https://images.unsplash.com/photo-1583562835057-a62d1beffbf3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=949&q=80');
     --bg-I8: url('https://images.unsplash.com/photo-1583483425010-c566431a7710?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80');
     --bg-I9: url('https://images.unsplash.com/photo-1583500557349-fb5238f8d946?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1949&q=80');
@@ -187,6 +187,9 @@ body::-webkit-scrollbar-thumb {
     --bg-I12: url('https://images.unsplash.com/photo-1583518257225-f9a8081f6a84?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80');
   }
 
+.navbar {
+  margin: 2rem 1rem;
+}
 
 .card {
     display: flex;
@@ -219,55 +222,6 @@ body::-webkit-scrollbar-thumb {
     margin: 0;
     color: white;
     text-shadow: 0 1px 0 black;
-  }
-
-  @media only screen and (max-width: 600px) {
-    .navbar {
-      bottom: 0;
-      width: 100vw;
-      height: 5rem;
-    }
-  
-    .logo {
-      display: none;
-    }
-  
-    .navbar-nav {
-      flex-direction: row;
-    }
-  
-    .nav-link {
-      justify-content: center;
-    }
-  
-    main {
-      margin: 0;
-    }
-  }
-  
-  /* Large screens */
-  @media only screen and (min-width: 600px) {
-    .navbar {
-      top: 0;
-      width: 5rem;
-      height: 100vh;
-    }
-  
-    .navbar:hover {
-      width: 16rem;
-    }
-  
-    .navbar:hover .link-text {
-      display: inline;
-    }
-  
-    .navbar:hover .logo svg {
-      margin-left: 11rem;
-    }
-  
-    .navbar:hover .logo-text {
-      left: 0px;
-    }
   }
   
   .dark {
