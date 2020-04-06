@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
 
 body {
-    background: rgb(19, 19, 19);
+    background: rgb(224, 218, 218);
     color: #fff;
     font-family: 'Montserrat', sans-serif;
     font-size: 2rem;
@@ -212,25 +212,8 @@ body::-webkit-scrollbar-thumb {
   .card:hover {
     box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;
     transform: translateY(-3px) scale(1.1);
-    box-shadow: -1px 2px 50px 120px rgba(0, 0, 0, 0.2) inset;
-    transition: 0.6s ease;
   }
-  
-  .module>header {
-    opacity: 0;
-  }
-  
   /* box-shadow: h-pos v-pos (blur) (spread) (color) (inset); */
-  
-  .card:hover .module>header {
-    opacity: 1;
-    position: absolute;
-    bottom: 0;
-    width: 74%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-  }
   
   .module>header>h6 {
     margin: 0;
@@ -325,12 +308,23 @@ body::-webkit-scrollbar-thumb {
   }
 
   
-.photo-grid {
+  .photo-grid {
     display: grid;
     gap: 1rem;
   
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     grid-auto-rows: 240px;
+  }
+  
+  /* Medium screens */
+  @media screen and (min-width: 600px) {
+    .card-tall {
+      grid-row: span 2 / auto;
+    }
+  
+    .card-wide {
+      grid-column: span 2 / auto;
+    }
   }
   
   
