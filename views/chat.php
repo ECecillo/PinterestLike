@@ -2,9 +2,9 @@
 
 // à compléter
 session_start();
-include_once('./fonctions/bd.php');
-include_once('./fonctions/utilisateur.php');
-include_once('./fonctions/discussion.php');
+include_once('../fonctions/bd.php');
+include_once('../fonctions/utilisateur.php');
+include_once('../fonctions/discussion.php');
 
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
