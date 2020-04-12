@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once 'fonctions/bd.php';
-require_once 'fonctions/utilisateur.php';
+require_once '../fonctions/bd.php';
+require_once '../fonctions/utilisateur.php';
 
 $stateMsg = "";
 
@@ -47,7 +47,7 @@ echo $stateMsg;
   </style>
   <!-- à compléter -->
   <h1 style="text-align: center; color:red">Bienvenue sur Pinterest</h1>
-  <form action="index.php" style="border:2px solid #ccc; border-radius: 30px;" method="POST">
+  <form action="../home.php" style="border:2px solid #ccc; border-radius: 30px;" method="POST">
     <div class="container">
       <div class="fillform" style="margin: 1rem;">
         <label for="pseudo"><b>Pseudo:</b></label>

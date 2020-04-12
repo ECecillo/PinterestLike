@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once 'fonctions/bd.php';
-require_once 'fonctions/utilisateur.php';
+require_once '../fonctions/bd.php';
+require_once '../fonctions/utilisateur.php';
 
 $stateMsg = "";
 

@@ -75,7 +75,7 @@ if (isset($_POST["valider"])) {
           <li><a href="#">Home</a></li>
           <li><a href="#">Add Pictures</a></li>
           <li><a href="#">More</a></li>
-          <li><a href="login.php">Login</a></li>
+          <li><a href="./views/login.php">Login</a></li>
         </ul>
       </nav>
     </div>
@@ -109,95 +109,95 @@ if (isset($_POST["valider"])) {
   <!-- Affichage des jeux  -->
   <div>
     <div class="photo-grid" style="margin: 1rem 1rem;">
-      <!-- 1er message ----------------------------------------------------------------- -->
+      <!-- 1er Image ----------------------------------------------------------------- -->
       <div class="card card-tall" style="background-image: var(--bg-I1);" alt="">
         <a class="" href="">
           <span></span>
         </a>
 
       </div>
-      <!-- 2ieme message ----------------------------------------------------------------- -->
+      <!-- 2ieme image ----------------------------------------------------------------- -->
       <div class="card card-tall" style="background-image:var(--bg-I2);" alt="">
         <a class="" href="">
           <span></span>
         </a>
 
       </div>
-      <!-- 3ieme message ----------------------------------------------------------------- -->
+      <!-- 3ieme image ----------------------------------------------------------------- -->
       <div class="card card-tall" style="background-image:var(--bg-I3);">
         <a class="" href="">
           <span></span>
         </a>
 
       </div>
-      <!-- 4ieme message ----------------------------------------------------------------- -->
+      <!-- 4ieme image ----------------------------------------------------------------- -->
       <div class="card card-tall" style="background-image:var(--bg-I4)" alt="">
         <a class="" href="">
           <span></span>
         </a>
 
       </div>
-      <!-- 5ieme message ----------------------------------------------------------------- -->
+      <!-- 5ieme image ----------------------------------------------------------------- -->
       <div class="card card-tall" style="background-image:var(--bg-I5);">
         <a class="" href="">
           <span></span>
         </a>
 
       </div>
-      <!-- 6ieme message ----------------------------------------------------------------- -->
+      <!-- 6ieme image ----------------------------------------------------------------- -->
       <div class="card card-tall" style="background-image:var(--bg-I6);">
         <a class="" href="">
           <span></span>
         </a>
-
+      <!-- 7ieme image ----------------------------------------------------------------- -->
       </div>
       <div class="card card-tall" style="background-image:var(--bg-I7);">
         <a class="" href="">
           <span></span>
         </a>
-
+      <!-- 8ieme image ----------------------------------------------------------------- -->
       </div>
       <div class="card card-tall" style="background-image:var(--bg-I8);">
         <a class="" href="">
           <span></span>
         </a>
-
+      <!-- 9ieme image ----------------------------------------------------------------- -->
       </div>
       <div class="card card-tall" style="background-image:var(--bg-I9);">
         <a class="" href="">
           <span></span>
         </a>
-
+      <!-- 10ieme image ----------------------------------------------------------------- -->
       </div>
       <div class="card card-tall" style="background-image:var(--bg-I10);">
         <a class="" href="">
           <span></span>
         </a>
-
+      <!-- 11ieme image ----------------------------------------------------------------- -->
       </div>
       <div class="card card-tall" style="background-image:var(--bg-I11);">
         <a class="" href="">
           <span></span>
         </a>
-
+      <!-- 12ieme image ----------------------------------------------------------------- -->
       </div>
       <div class="card card-tall" style="background-image:var(--bg-I12);">
         <a class="" href="">
           <span></span>
         </a>
-
+      <!-- 13ieme image ----------------------------------------------------------------- -->
       </div>
       <div class="card card-tall" style="background-image:var(--bg-I13);">
         <a class="" href="">
           <span></span>
         </a>
-
+      <!-- 14ieme image ----------------------------------------------------------------- -->
       </div>
       <div class="card card-tall" style="background-image:var(--bg-I14);">
         <a class="" href="">
           <span></span>
         </a>
-
+      <!-- 15ieme image ----------------------------------------------------------------- -->
       </div>
     </div>
   </div>
