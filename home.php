@@ -2,12 +2,12 @@
 session_start();
 require_once 'fonctions/bd.php';
 require_once 'fonctions/utilisateur.php';
-
+require_once 'fonctions/add_funct.php';
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
 $login = $_SESSION['login'];
-$other_user = getConnectedUsers($link);
-
+$images = get_all_image($link);
+$alt = get_alt($link);
 
 
 ?>
@@ -89,17 +89,16 @@ $other_user = getConnectedUsers($link);
   <div>
     <div class="photo-grid" style="margin: 1rem 1rem;">
       <?php
-
       $nbImage = 0;
       foreach ($other_user as $unePersonne) {
-        echo "
-      					<tr>
-          					<td> <p style='margin-bottom: 0;'><b> -" . $unePersonne['pseudo'] . "</b></p> </td>
-        				</tr>
-      					";
-        $nbPersoCo++;
+        echo " 
+        <div class='card card-tall' style='background-image: url('./assets/img/$images') ;' alt='$alt'>
+          <a class='' href=''>
+            <span></span>
+          </a>
+      </div>";
+        $nbImage++;
       }
-
       ?>
     </div>
   </div>
