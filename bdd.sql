@@ -64,11 +64,11 @@ INSERT INTO Photo(photoId,nomFich,description,catId)
 INSERT INTO Photo(photoId,nomFich,description,catId)
             VALUES (4,'bats.jpeg',"bats",2);
 INSERT INTO Photo(photoId,nomFich,description,catId)
-            VALUES (5,'city.jpeg',"bats",3);
+            VALUES (5,'city.jpg',"city",3);
 INSERT INTO Photo(photoId,nomFich,description,catId)
-            VALUES (6,'dog.jpeg',"bats",2);
+            VALUES (6,'dog.jpg',"dog",2);
 INSERT INTO Photo(photoId,nomFich,description,catId)
-            VALUES (7,'rock.jpeg',"bats",1);
+            VALUES (7,'rock.jpg',"a mountain",1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
