@@ -2,10 +2,10 @@
 session_start();
 require_once 'fonctions/bd.php';
 require_once 'fonctions/utilisateur.php';
+require_once 'fonctions/discussion.php';
 require_once 'fonctions/add_funct.php';
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
-$login = $_SESSION['login'];
 $images = get_all_image($link);
 $alt = get_alt($link);
 
@@ -90,9 +90,9 @@ $alt = get_alt($link);
     <div class="photo-grid" style="margin: 1rem 1rem;">
       <?php
       $nbImage = 0;
-      foreach ($other_user as $unePersonne) {
+      foreach ($images as $uneimage) {
         echo " 
-        <div class='card card-tall' style='background-image: url('./assets/img/$images') ;' alt='$alt'>
+        <div class='card card-tall' style='background-image: url('./assets/img/". $uneimage['nomFich'] . "') ;' alt=''>
           <a class='' href=''>
             <span></span>
           </a>
