@@ -6,3 +6,9 @@ function get_all_image ($link) {
     $result = executeQuery($link, $query);
     return $result;
 }
+
+function get_alt ($link) {
+    $query = "SELECT `Photo.description` from `Photo`;";
+    $result = executeQuery($link, $query);
+    return $result;
+}
