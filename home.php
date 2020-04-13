@@ -91,7 +91,7 @@ $images = get_all_image($link);
       $nbImage = 0;
       foreach ($images as $uneimage) {
         echo " 
-        <div class='card card-tall' style='background-image: url('./assets/img/".$uneimage['nomFich']."') ;' alt=''>
+        <div class='card card-tall' style='background-image: url(./assets/img/". $uneimage['nomFich'] . ");' alt=''>
           <a class='' href=''>
             <span></span>
           </a>
