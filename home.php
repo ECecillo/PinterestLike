@@ -7,8 +7,7 @@ require_once 'fonctions/add_funct.php';
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
 $images = get_all_image($link);
-$alt = get_alt($link);
-
+/* $alt = get_alt($link); */
 
 ?>
 <!DOCTYPE html>
@@ -83,7 +82,7 @@ $alt = get_alt($link);
       </div>
     </div>
   </div>
-
+  
   <h1><strong>Toutes les photos</strong></h1>
   <!-- Affichage des jeux  -->
   <div>
@@ -92,11 +91,11 @@ $alt = get_alt($link);
       $nbImage = 0;
       foreach ($images as $uneimage) {
         echo " 
-        <div class='card card-tall' style='background-image: url('./assets/img/". $uneimage['nomFich'] . "') ;' alt=''>
+        <div class='card card-tall alt=''>
           <a class='' href=''>
             <span></span>
           </a>
-      </div>";
+        </div>";
         $nbImage++;
       }
       ?>

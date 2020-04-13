@@ -70,7 +70,7 @@ function executeQuery($link, $query)
 		return $res;
 	} catch (PDOException $e) {
 		$erreur = $e->getMessage();
-		echo"Erreur requête";
+		echo"Erreur requête Q";
 	}
 }
 
