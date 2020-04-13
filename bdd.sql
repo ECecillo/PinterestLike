@@ -57,23 +57,23 @@ CREATE TABLE IF NOT EXISTS Photo (
 
 
 INSERT INTO Photo(photoId,nomFich,description,catId)
-            VALUES (1,"https://images.unsplash.com/photo-1585858966705-2668b705fcb7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80","Street",3);
+            VALUES (1,"brunel-johnson-k8zVbh6Duk0-unsplash","Man in a Street",3);
 INSERT INTO Photo(photoId,nomFich,description,catId)
             VALUES (2,'https://images.unsplash.com/photo-1545559054-8f4f9e855781?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',"stars",1);
 INSERT INTO Photo(photoId,nomFich,description,catId)
-            VALUES (3,"https://images.unsplash.com/photo-1444464666168-49d633b86797?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80","birds",2);
+            VALUES (3,"david-clode-CGSFeqa3kG0-unsplash","monkey",2);
 INSERT INTO Photo(photoId,nomFich,description,catId)
-            VALUES (4,"https://images.unsplash.com/photo-1585974780732-05acf9f01c32?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=646&q=80","insecte",2);
+            VALUES (4,"charles-deluvio-AQRp2NH-O8k-unsplash","dog",2);
 INSERT INTO Photo(photoId,nomFich,description,catId)
             VALUES (5,"https://images.unsplash.com/photo-1584709521360-ff0f5bbda444?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=691&q=80","insecte2",2);
 INSERT INTO Photo(photoId,nomFich,description,catId)
             VALUES (6,"https://images.unsplash.com/photo-1557008075-7f2c5efa4cfd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=642&q=80","fox",2);
 INSERT INTO Photo(photoId,nomFich,description,catId)
-            VALUES (7,"https://images.unsplash.com/photo-1536536982624-06c1776e0ca8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80","Montain night",1);
+            VALUES (7,"danny-giebe-VOG9q8Kz4XA-unsplash","Montain day",1);
 INSERT INTO Photo(photoId,nomFich,description,catId)
-            VALUES (8,"https://images.unsplash.com/photo-1558258695-39d4595e049c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80","Montain",1);
+            VALUES (8,"voy-zan-R44UWCU7pwg-unsplash","Montain",1);
 INSERT INTO Photo(photoId,nomFich,description,catId)
-            VALUES (9,'https://images.unsplash.com/photo-1561436599-2f12fffd6c83?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',"New-York",3);
+            VALUES (9,'annie-spratt-ccjLnZC8hT4-unsplash',"stuff",3);
 INSERT INTO Photo(photoId,nomFich,description,catId)
             VALUES (10,"https://images.unsplash.com/photo-1545334610-35dd6680f5bb?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80","lake",1);
 INSERT INTO Photo(photoId,nomFich,description,catId)
