@@ -21,10 +21,10 @@ function fill_category($link)
 
 function fill_image($link)
 {
+  $output='';
   if (isset($_POST['Valider']))
   {
     $image=$_POST['Image'];
-    $output='';
     if(($image=='')){
       $query = "SELECT nomFich from `Photo`;";
     }
@@ -32,6 +32,10 @@ function fill_image($link)
        $query = 'SELECT * FROM Photo WHERE catId='.$image.'';
 
     }
+  }
+  else{
+    $query = "SELECT nomFich from `Photo`;";
+  }
     $result = executeQuery($link, $query);
     $images=$result;
     $nbImage = 0;
@@ -44,8 +48,7 @@ function fill_image($link)
       </div>";
       $nbImage++;
     }
-    return $output;
-  }
+  return $output;
 }
 /* $alt = get_alt($link); */
 
