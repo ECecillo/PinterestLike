@@ -73,3 +73,19 @@ INSERT INTO Photo(photoId,nomFich,description,catId)
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- ----------------------------------------------------------------
+
+
+-- 
+-- Ajout d'une table `utilisateur`
+--
+
+CREATE TABLE IF NOT EXISTS Users (
+  photoId int NOT NULL,
+  nomFich varchar(250) NOT NULL,
+  description varchar(250) NOT NULL,
+  catId int NOT NULL,
+  PRIMARY KEY (photoId),
+  FOREIGN KEY (catId) REFERENCES Categorie(catId)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
