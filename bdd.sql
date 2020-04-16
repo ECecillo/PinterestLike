@@ -60,9 +60,9 @@ INSERT INTO Photo(photoId,nomFich,description,catId)
 INSERT INTO Photo(photoId,nomFich,description,catId)
             VALUES (2,'stars.jpeg',"stars",1);
 INSERT INTO Photo(photoId,nomFich,description,catId)
-            VALUES (3,'birds',"birds",2);
+            VALUES (3,'birds.jpeg',"birds",2);
 INSERT INTO Photo(photoId,nomFich,description,catId)
-            VALUES (4,'bats.jpeg',"bats",2);
+            VALUES (4,'bat.jpeg',"bats",2);
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
