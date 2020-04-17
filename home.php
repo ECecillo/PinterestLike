@@ -6,8 +6,7 @@ require_once 'fonctions/discussion.php';
 require_once 'fonctions/add_funct.php';
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
-$images = get_all_image($link);
-/* $alt = get_alt($link); */
+
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +25,7 @@ $images = get_all_image($link);
   </script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
   </script>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <!-- Logo -->
   <link rel="icon" href="./img/pinter.png" type="image/icon type">
   <!-- Mon style -->
@@ -59,7 +58,6 @@ $images = get_all_image($link);
       </nav>
     </div>
   </header>
-
   <!-- Partie sur les images  -->
 
   <div class="category_paragraph">
@@ -67,37 +65,22 @@ $images = get_all_image($link);
   </div>
   <div class="category_selector">
     <div class="btn-group dropright">
-      <button class="btn btn-light btn-lg" type="button">
-        Select a Category
-      </button>
-      <button type="button" class="btn btn-lg btn-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class="sr-only">Toggle Dropdown</span>
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Nature</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Animals</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Life</a>
-      </div>
+      <form method="post" action="home.php">
+        <select id="Image" name="Image">
+          <option value=""> Toutes les images </option>
+          <?php echo fill_category($link); ?>
+        </select>
+        <input type="submit" name="Valider" value="OK" />
+      </form>
     </div>
   </div>
 
   <h1><strong>Toutes les photos</strong></h1>
   <!-- Affichage des jeux  -->
   <div>
-    <div class="photo-grid" style="margin: 1rem 1rem;">
+    <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
       <?php
-      $nbImage = 0;
-      foreach ($images as $uneimage) {
-        echo " 
-        <div class='card card-tall' style='background-image: url(./assets/img/". $uneimage['nomFich'] . ");' alt=''>
-          <a class='' href=''>
-            <span></span>
-          </a>
-        </div>";
-        $nbImage++;
-      }
+      echo fill_image($link);
       ?>
     </div>
   </div>
