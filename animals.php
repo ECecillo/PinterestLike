@@ -5,36 +5,11 @@ require_once 'fonctions/utilisateur.php';
 require_once 'fonctions/discussion.php';
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
-function fill_category($link)
-{
-  $output='';
-  $query = "SELECT * from `Categorie`;";
-  $result = executeQuery($link, $query);
-  $cat=$result;
-  foreach ($cat as $cat1) {
-    $output .=  '<option value="'.$cat1["catId"].'">'.$cat1["nomCat"].'</option>';
-
- }
- return $output;
-}
 
 function fill_image($link)
 {
-  $output='';
-  if (isset($_POST['Valider']))
-  {
-    $image=$_POST['Image'];
-    if(($image=='')){
-      $query = "SELECT C.nomCat, P.nomFich,P.catId,P.description  from Photo P join Categorie C on C.catId=P.catId ;";
-    }
-    else{
-       $query = 'SELECT C.nomCat, P.nomFich, P.catId,P.description  FROM Photo P join Categorie C on C.catId=P.catId WHERE P.catId='.$image.'';
-
-    }
-  }
-  else{
-    $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId;";
-  }
+    $output='';
+    $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId WHERE C.nomCat='Animals';";
     $result = executeQuery($link, $query);
     $images=$result;
     $nbImage = 0;
@@ -116,9 +91,9 @@ function fill_image($link)
           Category
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="Naturals.php">Naturals</a>
-          <a class="dropdown-item" href="animals.php">Animals</a>
-          <a class="dropdown-item" href="life.php>">Life</a>
+          <a class="dropdown-item" href="home.php">All images</a>
+          <a class="dropdown-item" href="naturals.php">Naturals</a>
+          <a class="dropdown-item" href="life.php">Life</a>
         </div>
       </li>
           <li><a href="#">More</a></li>
@@ -130,22 +105,7 @@ function fill_image($link)
 
   <!-- Partie sur les images  -->
 
-  <div class="category_paragraph">
-    <p>Which pictures do you wanna show ? </p> <br>
-  </div>
-  <div class="category_selector">
-    <div class="btn-group dropright">
-      <form method="post" action="home.php">
-      <select id="Image"name="Image">
-        <option value=""> select a Category </option>
-        <?php echo fill_category($link);?>
-        </select>
-           <input type="submit" name="Valider" value="OK"/>
-    </form>
-    </div>
-  </div>
-
-  <h1><strong>Galery Photo</strong></h1>
+  <h1><strong>Galery Photo: Animals</strong></h1>
   <!-- Affichage des jeux  -->
   <div>
     <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
