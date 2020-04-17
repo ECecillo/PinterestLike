@@ -3,7 +3,6 @@ session_start();
 require_once 'fonctions/bd.php';
 require_once 'fonctions/utilisateur.php';
 require_once 'fonctions/discussion.php';
-require_once 'fonctions/add_funct.php';
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
 function fill_category($link)
@@ -26,25 +25,41 @@ function fill_image($link)
   {
     $image=$_POST['Image'];
     if(($image=='')){
-      $query = "SELECT nomFich from `Photo`;";
+      $query = "SELECT C.nomCat, P.nomFich,P.catId,P.description  from Photo P join Categorie C on C.catId=P.catId ;";
     }
     else{
-       $query = 'SELECT * FROM Photo WHERE catId='.$image.'';
+       $query = 'SELECT C.nomCat, P.nomFich, P.catId,P.description  FROM Photo P join Categorie C on C.catId=P.catId WHERE P.catId='.$image.'';
 
     }
   }
   else{
-    $query = "SELECT nomFich from `Photo`;";
+    $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId;";
   }
     $result = executeQuery($link, $query);
     $images=$result;
     $nbImage = 0;
     foreach ($images as $uneimage) {
       $output.= "
-      <div class='card card-tall' style='background-image: url(./assets/img/". $uneimage['nomFich'] . ");' alt=''>
-        <a class='' href=''>
-          <span></span>
-        </a>
+      <img src='assets/img/".$uneimage['nomFich']."' data-toggle='modal' data-target='#".$uneimage['nomFich']."' class='card card-tall'  alt=''>
+      </img>
+      <!-- Modal -->
+      <div class='modal fade' id='".$uneimage['nomFich']."'>
+        <div class='modal-dialog' role='document'>
+          <div class='modal-content' style='width:650px;'>
+            <div class='modal-header'>
+              <h5 class='modal-title' id='exampleModalLabel'>Description sheet</h5>
+              <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+              </button>
+            </div>
+            <div class='modal-body'>
+            <img src='assets/img/".$uneimage['nomFich']."'  style='width: 250px;height: 250px;margin-right:20px;' align='left'>
+            <div> Description: ".$uneimage['description']."</div>
+          <div>File Name: ".$uneimage['nomFich']."</div>
+          <div>Category: ".$uneimage['nomCat']."</div>
+            </div>
+          </div>
+        </div>
       </div>";
       $nbImage++;
     }
@@ -59,7 +74,7 @@ function fill_image($link)
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Pinterrest</title>
   <!-- Css Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Js Bootstrap -->
@@ -72,7 +87,7 @@ function fill_image($link)
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
   <!-- Logo -->
-  <link rel="icon" href="./img/pinter.png" type="image/icon type">
+  <link rel="icon" href="assets/img/pinter.png" type="image/icon type">
   <!-- Mon style -->
   <style>
     @import url('style.css');
@@ -95,8 +110,17 @@ function fill_image($link)
       <nav>
         <h1 class="brand"><a href="home.php">Pin<span>ter</span>est</a></h1>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Add Pictures</a></li>
+          <li><a href="home.php">Home</a></li>
+          <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Category
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="Naturals.php">Naturals</a>
+          <a class="dropdown-item" href="animals.php">Animals</a>
+          <a class="dropdown-item" href="life.php>">Life</a>
+        </div>
+      </li>
           <li><a href="#">More</a></li>
           <li><a href="./views/login.php">Login</a></li>
         </ul>
@@ -121,7 +145,7 @@ function fill_image($link)
     </div>
   </div>
 
-  <h1><strong>Toutes les photos</strong></h1>
+  <h1><strong>Galery Photo</strong></h1>
   <!-- Affichage des jeux  -->
   <div>
     <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
