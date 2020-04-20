@@ -6,40 +6,19 @@ require_once 'fonctions/discussion.php';
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
 
-function fill_category($link)
-{
-  $output = '';
-  $query = "SELECT * from `Categorie`;";
-  $result = executeQuery($link, $query);
-  $cat = $result;
-  foreach ($cat as $cat1) {
-    $output .=  '<option value="' . $cat1["catId"] . '">' . $cat1["nomCat"] . '</option>';
-  }
-  return $output;
-}
-
 function fill_image($link)
 {
-  $output = '';
-  if (isset($_POST['Valider'])) {
-    $image = $_POST['Image'];
-    if (($image == '')) {
-      $query = "SELECT C.nomCat, P.nomFich,P.catId,P.description  from Photo P join Categorie C on C.catId=P.catId ;";
-    } else {
-      $query = 'SELECT C.nomCat, P.nomFich, P.catId,P.description  FROM Photo P join Categorie C on C.catId=P.catId WHERE P.catId=' . $image . '';
-    }
-  } else {
-    $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId;";
-  }
-  $result = executeQuery($link, $query);
-  $images = $result;
-  $nbImage = 0;
-  foreach ($images as $uneimage) {
-    $output .= "
-      <img src='assets/img/" . $uneimage['nomFich'] . "' data-toggle='modal' data-target='#" . $uneimage['nomFich'] . "' class='card card-tall'  alt=''>
+    $output='';
+    $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId WHERE C.nomCat='Animals';";
+    $result = executeQuery($link, $query);
+    $images=$result;
+    $nbImage = 0;
+    foreach ($images as $uneimage) {
+      $output.= "
+      <img src='assets/img/".$uneimage['nomFich']."' data-toggle='modal' data-target='#".$uneimage['nomFich']."' class='card card-tall'  alt=''>
       </img>
       <!-- Modal -->
-      <div class='modal fade' id='" . $uneimage['nomFich'] . "'>
+      <div class='modal fade' id='".$uneimage['nomFich']."'>
         <div class='modal-dialog' role='document'>
           <div class='modal-content' style='width:650px;'>
             <div class='modal-header'>
@@ -49,16 +28,16 @@ function fill_image($link)
               </button>
             </div>
             <div class='modal-body'>
-            <img src='assets/img/" . $uneimage['nomFich'] . "'  style='width: 250px;height: 250px;margin-right:20px;' align='left'>
-            <div> Description: " . $uneimage['description'] . "</div>
-          <div>File Name: " . $uneimage['nomFich'] . "</div>
-          <div>Category: " . $uneimage['nomCat'] . "</div>
+            <img src='assets/img/".$uneimage['nomFich']."'  style='width: 250px;height: 250px;margin-right:20px;' align='left'>
+            <div> Description: ".$uneimage['description']."</div>
+          <div>File Name: ".$uneimage['nomFich']."</div>
+          <div>Category: ".$uneimage['nomCat']."</div>
             </div>
           </div>
         </div>
       </div>";
-    $nbImage++;
-  }
+      $nbImage++;
+    }
   return $output;
 }
 /* $alt = get_alt($link); */
@@ -108,15 +87,15 @@ function fill_image($link)
         <ul>
           <li><a href="home.php">Home</a></li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Category
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="Naturals.php">Naturals</a>
-              <a class="dropdown-item" href="animals.php">Animals</a>
-              <a class="dropdown-item" href="life.php>">Life</a>
-            </div>
-          </li>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Category
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="home.php">All images</a>
+          <a class="dropdown-item" href="naturals.php">Naturals</a>
+          <a class="dropdown-item" href="life.php">Life</a>
+        </div>
+      </li>
           <li><a href="#">More</a></li>
           <li><a href="./views/login.php">Login</a></li>
         </ul>
@@ -126,22 +105,7 @@ function fill_image($link)
 
   <!-- Partie sur les images  -->
 
-  <div class="category_paragraph">
-    <p>Which pictures do you wanna show ? </p> <br>
-  </div>
-  <div class="category_selector">
-    <div class="btn-group dropright">
-      <form method="post" action="home.php">
-        <select id="Image" name="Image">
-          <option value=""> select a Category </option>
-          <?php echo fill_category($link); ?>
-        </select>
-        <input type="submit" name="Valider" value="OK" />
-      </form>
-    </div>
-  </div>
-
-  <h1><strong>Galery Photo</strong></h1>
+  <h1><strong>Galery Photo: Animals</strong></h1>
   <!-- Affichage des jeux  -->
   <div>
     <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
