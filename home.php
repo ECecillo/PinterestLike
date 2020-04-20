@@ -3,10 +3,64 @@ session_start();
 require_once 'fonctions/bd.php';
 require_once 'fonctions/utilisateur.php';
 require_once 'fonctions/discussion.php';
-require_once 'fonctions/add_funct.php';
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
+function fill_category($link)
+{
+  $output = '';
+  $query = "SELECT * from `Categorie`;";
+  $result = executeQuery($link, $query);
+  $cat = $result;
+  foreach ($cat as $cat1) {
+    $output .=  '<option value="' . $cat1["catId"] . '">' . $cat1["nomCat"] . '</option>';
+  }
+  return $output;
+}
 
+function fill_image($link)
+{
+  $output = '';
+  if (isset($_POST['Valider'])) {
+    $image = $_POST['Image'];
+    if (($image == '')) {
+      $query = "SELECT C.nomCat, P.nomFich,P.catId,P.description  from Photo P join Categorie C on C.catId=P.catId ;";
+    } else {
+      $query = 'SELECT C.nomCat, P.nomFich, P.catId,P.description  FROM Photo P join Categorie C on C.catId=P.catId WHERE P.catId=' . $image . '';
+    }
+  } else {
+    $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId;";
+  }
+  $result = executeQuery($link, $query);
+  $images = $result;
+  $nbImage = 0;
+  foreach ($images as $uneimage) {
+    $output .= "
+      <img src='assets/img/" . $uneimage['nomFich'] . "' data-toggle='modal' data-target='#" . $uneimage['nomFich'] . "' class='card card-tall'  alt=''>
+      </img>
+      <!-- Modal -->
+      <div class='modal fade' id='" . $uneimage['nomFich'] . "'>
+        <div class='modal-dialog' role='document'>
+          <div class='modal-content' style='width:650px;'>
+            <div class='modal-header'>
+              <h5 class='modal-title' id='exampleModalLabel'>Description sheet</h5>
+              <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+              </button>
+            </div>
+            <div class='modal-body'>
+            <img src='assets/img/" . $uneimage['nomFich'] . "'  style='width: 250px;height: 250px;margin-right:20px;' align='left'>
+            <div> Description: " . $uneimage['description'] . "</div>
+          <div>File Name: " . $uneimage['nomFich'] . "</div>
+          <div>Category: " . $uneimage['nomCat'] . "</div>
+            </div>
+          </div>
+        </div>
+      </div>";
+    $nbImage++;
+  }
+  return $output;
+}
+/* $alt = get_alt($link); */
 
 ?>
 <!DOCTYPE html>
@@ -15,7 +69,7 @@ $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Pinterrest</title>
   <!-- Css Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Js Bootstrap -->
@@ -26,8 +80,9 @@ $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
   <!-- Logo -->
-  <link rel="icon" href="./img/pinter.png" type="image/icon type">
+  <link rel="icon" href="assets/img/pinter.png" type="image/icon type">
   <!-- Mon style -->
   <style>
     @import url('style.css');
@@ -50,14 +105,24 @@ $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
       <nav>
         <h1 class="brand"><a href="home.php">Pin<span>ter</span>est</a></h1>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Add Pictures</a></li>
+          <li><a href="home.php">Home</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Category
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="Naturals.php">Naturals</a>
+              <a class="dropdown-item" href="animals.php">Animals</a>
+              <a class="dropdown-item" href="life.php>">Life</a>
+            </div>
+          </li>
           <li><a href="#">More</a></li>
           <li><a href="./views/login.php">Login</a></li>
         </ul>
       </nav>
     </div>
   </header>
+
   <!-- Partie sur les images  -->
 
   <div class="category_paragraph">
@@ -67,7 +132,7 @@ $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
     <div class="btn-group dropright">
       <form method="post" action="home.php">
         <select id="Image" name="Image">
-          <option value=""> Toutes les images </option>
+          <option value=""> select a Category </option>
           <?php echo fill_category($link); ?>
         </select>
         <input type="submit" name="Valider" value="OK" />
@@ -75,7 +140,7 @@ $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
     </div>
   </div>
 
-  <h1><strong>Toutes les photos</strong></h1>
+  <h1><strong>Galery Photo</strong></h1>
   <!-- Affichage des jeux  -->
   <div>
     <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
