@@ -5,6 +5,7 @@ require_once 'fonctions/utilisateur.php';
 require_once 'fonctions/discussion.php';
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
+
 function fill_category($link)
 {
   $output = '';
@@ -145,7 +146,7 @@ function fill_image($link)
   <div>
     <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
       <?php
-      echo fill_image($link);
+        echo fill_image($link);
       ?>
     </div>
   </div>
