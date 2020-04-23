@@ -18,20 +18,35 @@ function fill_image($link)
       <img src='assets/img/".$uneimage['nomFich']."' data-toggle='modal' data-target='#".$uneimage['nomFich']."' class='card card-tall'  alt=''>
       </img>
       <!-- Modal -->
-      <div class='modal fade' id='".$uneimage['nomFich']."'>
+      <div class='modal fade' id='" . $uneimage['nomFich'] . "'>
         <div class='modal-dialog' role='document'>
           <div class='modal-content' style='width:650px;'>
             <div class='modal-header'>
-              <h5 class='modal-title' id='exampleModalLabel'>Description sheet</h5>
+              <h5 class='modal-title' id='exampleModalLabel'>Details of this picture</h5>
               <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
               </button>
             </div>
             <div class='modal-body'>
-            <img src='assets/img/".$uneimage['nomFich']."'  style='width: 250px;height: 250px;margin-right:20px;' align='left'>
-            <div> Description: ".$uneimage['description']."</div>
-          <div>File Name: ".$uneimage['nomFich']."</div>
-          <div>Category: ".$uneimage['nomCat']."</div>
+            <img src='assets/img/" . $uneimage['nomFich'] . "'  style='width: 250px;height: 250px;margin-right:20px; float:left; '>
+            <div style='display: flex;justify-content: center; font-size: 1.2rem'>
+            <table class='table'>
+              <tbody>
+                <tr>
+                  <th>Description</th>
+                  <td>" . $uneimage['description'] . "</td>
+                </tr>
+                <tr>
+                  <th>Name of the file</th>
+                  <td>" . $uneimage['nomFich'] . "</td>
+                </tr>
+                <tr>
+                  <th>Category name</th>
+                  <td>" . $uneimage['nomCat'] . "</td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
             </div>
           </div>
         </div>
@@ -96,7 +111,7 @@ function fill_image($link)
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="Naturals.php" style="margin-left: 0px;margin-right: 0px;">Naturals</a>
               <a class="dropdown-item" href="animals.php" style="margin-left: 0px;margin-right: 0px;">Animals</a>
-              <a class="dropdown-item" href="life.php>" style="margin-left: 0px;margin-right: 0px;">Life</a>
+              <a class="dropdown-item" href="life.php" style="margin-left: 0px;margin-right: 0px;">Life</a>
             </div>
           </li>
           <li>
@@ -108,7 +123,7 @@ function fill_image($link)
   </header>
 
   <!-- Partie sur les images  -->
-  <div style="margin: 1rem 15rem;">
+  <div style="margin: 1rem 25rem;">
     <h1><strong>Galery Photo: Naturals</strong></h1>
     <!-- Affichage des jeux  -->
     <div>

@@ -91,7 +91,7 @@ $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
   
 
   <!-- Affichage des jeux  -->
-  <div style="margin: 1rem 15rem;">
+  <div style="margin: 1rem 25rem;">
     <h1><strong>Galery Photo</strong></h1>
     <div class="photo-grid" id="fill_image">
       <?php
