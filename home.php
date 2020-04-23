@@ -59,9 +59,9 @@ $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
               Category &#8659;
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="Naturals.php">Naturals</a>
-              <a class="dropdown-item" href="animals.php">Animals</a>
-              <a class="dropdown-item" href="life.php>">Life</a>
+              <a class="dropdown-item" href="Naturals.php" style="margin-left: 0px;margin-right: 0px;">Naturals</a>
+              <a class="dropdown-item" href="animals.php" style="margin-left: 0px;margin-right: 0px;">Animals</a>
+              <a class="dropdown-item" href="life.php>" style="margin-left: 0px;margin-right: 0px;">Life</a>
             </div>
           </li>
           <li>
