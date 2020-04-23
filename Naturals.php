@@ -63,6 +63,9 @@ function fill_image($link)
 
   <!-- Logo -->
   <link rel="icon" href="assets/img/pinter.png" type="image/icon type">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <link rel="stylesheet" href="materialize.css">
   <!-- Mon style -->
   <style>
     @import url('style.css');
@@ -86,32 +89,34 @@ function fill_image($link)
         <h1 class="brand"><a href="home.php">Pin<span>ter</span>est</a></h1>
         <ul>
           <li><a href="home.php">Home</a></li>
-          <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Category
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="home.php">All images</a>
-          <a class="dropdown-item" href="animals.php">Animals</a>
-          <a class="dropdown-item" href="life.php">Life</a>
-        </div>
-      </li>
-          <li><a href="#">More</a></li>
-          <li><a href="./views/login.php">Login</a></li>
+          <li style="margin-top: -0.5625rem;">
+            <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Category &#8659;
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="Naturals.php" style="margin-left: 0px;margin-right: 0px;">Naturals</a>
+              <a class="dropdown-item" href="animals.php" style="margin-left: 0px;margin-right: 0px;">Animals</a>
+              <a class="dropdown-item" href="life.php>" style="margin-left: 0px;margin-right: 0px;">Life</a>
+            </div>
+          </li>
+          <li>
+            <a href="./views/login.php">Login <i class="material-icons">face</i></a>
+          </li>
         </ul>
       </nav>
     </div>
   </header>
 
   <!-- Partie sur les images  -->
-
-  <h1><strong>Galery Photo: Naturals</strong></h1>
-  <!-- Affichage des jeux  -->
-  <div>
-    <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
-      <?php
+  <div style="margin: 1rem 15rem;">
+    <h1><strong>Galery Photo: Naturals</strong></h1>
+    <!-- Affichage des jeux  -->
+    <div>
+      <div class="photo-grid" id="fill_image">
+        <?php
         echo fill_image($link);
-      ?>
+        ?>
+      </div>
     </div>
   </div>
 </body>
