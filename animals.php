@@ -18,20 +18,35 @@ function fill_image($link)
       <img src='assets/img/".$uneimage['nomFich']."' data-toggle='modal' data-target='#".$uneimage['nomFich']."' class='card card-tall'  alt=''>
       </img>
       <!-- Modal -->
-      <div class='modal fade' id='".$uneimage['nomFich']."'>
+      <div class='modal fade' id='" . $uneimage['nomFich'] . "'>
         <div class='modal-dialog' role='document'>
           <div class='modal-content' style='width:650px;'>
             <div class='modal-header'>
-              <h5 class='modal-title' id='exampleModalLabel'>Description sheet</h5>
+              <h5 class='modal-title' id='exampleModalLabel'>Details of this picture</h5>
               <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
               </button>
             </div>
             <div class='modal-body'>
-            <img src='assets/img/".$uneimage['nomFich']."'  style='width: 250px;height: 250px;margin-right:20px;' align='left'>
-            <div> Description: ".$uneimage['description']."</div>
-          <div>File Name: ".$uneimage['nomFich']."</div>
-          <div>Category: ".$uneimage['nomCat']."</div>
+            <img src='assets/img/" . $uneimage['nomFich'] . "'  style='width: 250px;height: 250px;margin-right:20px; float:left; '>
+            <div style='display: flex;justify-content: center; font-size: 1.2rem'>
+            <table class='table'>
+              <tbody>
+                <tr>
+                  <th>Description</th>
+                  <td>" . $uneimage['description'] . "</td>
+                </tr>
+                <tr>
+                  <th>Name of the file</th>
+                  <td>" . $uneimage['nomFich'] . "</td>
+                </tr>
+                <tr>
+                  <th>Category name</th>
+                  <td>" . $uneimage['nomCat'] . "</td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
             </div>
           </div>
         </div>
@@ -63,6 +78,9 @@ function fill_image($link)
 
   <!-- Logo -->
   <link rel="icon" href="assets/img/pinter.png" type="image/icon type">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <link rel="stylesheet" href="materialize.css">
   <!-- Mon style -->
   <style>
     @import url('style.css');
@@ -86,32 +104,34 @@ function fill_image($link)
         <h1 class="brand"><a href="home.php">Pin<span>ter</span>est</a></h1>
         <ul>
           <li><a href="home.php">Home</a></li>
-          <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Category
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="home.php">All images</a>
-          <a class="dropdown-item" href="naturals.php">Naturals</a>
-          <a class="dropdown-item" href="life.php">Life</a>
-        </div>
-      </li>
-          <li><a href="#">More</a></li>
-          <li><a href="./views/login.php">Login</a></li>
+          <li style="margin-top: -0.5625rem;">
+            <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Category &#8659;
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="Naturals.php" style="margin-left: 0px;margin-right: 0px;">Naturals</a>
+              <a class="dropdown-item" href="animals.php" style="margin-left: 0px;margin-right: 0px;">Animals</a>
+              <a class="dropdown-item" href="life.php" style="margin-left: 0px;margin-right: 0px;">Life</a>
+            </div>
+          </li>
+          <li>
+            <a href="./views/login.php">Login <i class="material-icons">face</i></a>
+          </li>
         </ul>
       </nav>
     </div>
   </header>
 
   <!-- Partie sur les images  -->
-
-  <h1><strong>Galery Photo: Animals</strong></h1>
-  <!-- Affichage des jeux  -->
-  <div>
-    <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
-      <?php
+  <div style="margin: 1rem 25rem;">
+    <h1><strong>Galery Photo: Naturals</strong></h1>
+    <!-- Affichage des jeux  -->
+    <div>
+      <div class="photo-grid" id="fill_image">
+        <?php
         echo fill_image($link);
-      ?>
+        ?>
+      </div>
     </div>
   </div>
 </body>
