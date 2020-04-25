@@ -7,20 +7,24 @@ $stateMsg = "";
 
 if (isset($_POST["valider"])) {
   $pseudo = $_POST["pseudo"];
-  $hashMdp = md5($_POST["mdp"]);
+  $hashMdp = $_POST["mdp"];
 
   $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
   $check = getUser($pseudo, $hashMdp, $link);
+  echo $check;
 
   if (getUser($pseudo, $hashMdp, $link) == TRUE) {
     $_SESSION["pseudo"]= $pseudo;
-    $_SESSION["mdp"]= $pwd;
+    $_SESSION["mdp"]= $hashMdp;
+    date_default_timezone_set('Europe/Paris');
+    $_SESSION["date"]=date('d-m-Y H:i:s');
     setConnected($pseudo, $link);
-    header('Location: chat.php?subscribe=yes');
+    $_SESSION["logged"]="yes";
+    header('Location: ../home.php');
     exit();
   }
   else {
-    $stateMsg = "Le couple pseudo/mot de passe ne correspond à aucun utilisateur enregistré";
+    /*$stateMsg = */ echo "Le couple pseudo/mot de passe ne correspond à aucun utilisateur enregistré";
   }
 echo $stateMsg;
 }
@@ -47,7 +51,7 @@ echo $stateMsg;
   </style>
   <!-- à compléter -->
   <h1 style="text-align: center; color:red">Bienvenue sur Pinterest</h1>
-  <form action="../home.php" style="border:2px solid #ccc; border-radius: 30px;" method="POST">
+  <form action="login.php" style="border:2px solid #ccc; border-radius: 30px;" method="POST">
     <div class="container">
       <div class="fillform" style="margin: 1rem;">
         <label for="pseudo"><b>Pseudo:</b></label>
