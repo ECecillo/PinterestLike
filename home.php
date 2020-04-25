@@ -17,7 +17,7 @@ $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
 
   <?php include(PATH_VIEWS . 'header.php'); ?>
 
-  <!-- Partie sur les images  -->
+  <!-- Category Selector  -->
 
   <div class="category_paragraph">
     <p>Which pictures do you wanna show ? </p> <br>
@@ -35,7 +35,7 @@ $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
   </div>
 
 
-  <!-- Affichage des jeux  -->
+  <!-- Show images  -->
   <div style="margin: 1rem 25rem;">
     <h1><strong>Galery Photo</strong></h1>
     <div class="photo-grid" id="fill_image">
