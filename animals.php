@@ -6,6 +6,28 @@ require_once 'fonctions/discussion.php';
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
 
+function AffDate($date){
+ if(!ctype_digit($date))
+  $date = strtotime($date);
+ if(date('Ymd', $date) == date('Ymd')){
+  $diff = time()-$date;
+  if($diff < 60) /* moins de 60 secondes */
+   return $diff.' secondes ago';
+  else if($diff < 3600) /* moins d'une heure */
+   return round($diff/60, 0).' minutes ago';
+  else if($diff < 10800) /* moins de 3 heures */
+   return round($diff/3600, 0).' hour ago';
+  else /*  plus de 3 heures ont affiche ajourd'hui à HH:MM:SS */
+   return 'Today at '.date('H:i:s', $date);
+ }
+ else if(date('Ymd', $date) == date('Ymd', strtotime('- 1 DAY')))
+  return 'Yesterday at '.date('H:i:s', $date);
+ else if(date('Ymd', $date) == date('Ymd', strtotime('- 2 DAY')))
+  return 'Two days ago at '.date('H:i:s', $date);
+ else
+  return date('d/m/Y à H:i:s', $date);
+}
+
 function fill_image($link)
 {
     $output='';
@@ -86,22 +108,37 @@ function fill_image($link)
         <h1 class="brand"><a href="home.php">Pin<span>ter</span>est</a></h1>
         <ul>
           <li><a href="home.php">Home</a></li>
+          <?php if ($_SESSION["logged"]=="yes") {
+            echo "<li><a href='AddImage.php'>Add image</a></li>";
+          } ?>
           <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Category
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="home.php">All images</a>
-          <a class="dropdown-item" href="naturals.php">Naturals</a>
+          <a class="dropdown-item" href="Naturals.php">Naturals</a>
           <a class="dropdown-item" href="life.php">Life</a>
         </div>
       </li>
           <li><a href="#">More</a></li>
-          <li><a href="./views/login.php">Login</a></li>
+          <?php if ($_SESSION["logged"]=="yes") {
+            echo "<form action='home.php' method='post'>
+            <li><a><input type='submit' name='logout' value='logout' style='border:none;background:none;' /></a></li>
+          </form>";
+          }
+          else {
+            echo "<li><a href='./views/login.php'>Login</a></li>";
+          }?>
         </ul>
       </nav>
     </div>
   </header>
+  <?php if ($_SESSION["logged"]=="yes") {
+    echo "<h1><strong>Welcome ".$_SESSION['pseudo']." <br/></strong></h1>";
+    echo AffDate($_SESSION["date"]);
+  }
+   ?>
 
   <!-- Partie sur les images  -->
 

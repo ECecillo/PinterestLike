@@ -68,3 +68,16 @@ INSERT INTO Photo(photoId,nomFich,description,catId)
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+CREATE TABLE IF NOT EXISTS `utilisateur` (
+  `pseudo` varchar(255) NOT NULL,
+  `mdp` varchar(255) NOT NULL,
+  `couleur` varchar(255) NOT NULL,
+  `etat` varchar(255) NOT NULL,
+  PRIMARY KEY (`pseudo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO utilisateur(pseudo,mdp,couleur,etat)
+    VALUES ('root','root','red','disconnected');
