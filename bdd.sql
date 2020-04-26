@@ -81,11 +81,13 @@ INSERT INTO Photo(photoId,nomFich,description,catId)
 -- Ajout d'une table `utilisateur`
 --
 
-CREATE TABLE IF NOT EXISTS Users (
-  photoId int NOT NULL,
-  nomFich varchar(250) NOT NULL,
-  description varchar(250) NOT NULL,
-  catId int NOT NULL,
-  PRIMARY KEY (photoId),
-  FOREIGN KEY (catId) REFERENCES Categorie(catId)
+CREATE TABLE IF NOT EXISTS `utilisateur` (
+  `pseudo` varchar(255) NOT NULL,
+  `mdp` varchar(255) NOT NULL,
+  `couleur` varchar(255) NOT NULL,
+  `etat` varchar(255) NOT NULL,
+  PRIMARY KEY (`pseudo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO utilisateur(pseudo,mdp,couleur,etat)
+    VALUES ('root','root','red','disconnected');

@@ -6,53 +6,60 @@ require_once 'fonctions/discussion.php';
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
 
+function AffDate($date){
+ if(!ctype_digit($date))
+  $date = strtotime($date);
+ if(date('Ymd', $date) == date('Ymd')){
+  $diff = time()-$date;
+  if($diff < 60) /* moins de 60 secondes */
+   return $diff.' secondes ago';
+  else if($diff < 3600) /* moins d'une heure */
+   return round($diff/60, 0).' minutes ago';
+  else if($diff < 10800) /* moins de 3 heures */
+   return round($diff/3600, 0).' hour ago';
+  else /*  plus de 3 heures ont affiche ajourd'hui à HH:MM:SS */
+   return 'Today at '.date('H:i:s', $date);
+ }
+ else if(date('Ymd', $date) == date('Ymd', strtotime('- 1 DAY')))
+  return 'Yesterday at '.date('H:i:s', $date);
+ else if(date('Ymd', $date) == date('Ymd', strtotime('- 2 DAY')))
+  return 'Two days ago at '.date('H:i:s', $date);
+ else
+  return date('d/m/Y à H:i:s', $date);
+}
+
 function fill_image($link)
 {
-  $output = '';
-  $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId WHERE C.nomCat='Life';";
-  $result = executeQuery($link, $query);
-  $images = $result;
-  $nbImage = 0;
-  foreach ($images as $uneimage) {
-    $output .= "
-      <img src='assets/img/" . $uneimage['nomFich'] . "' data-toggle='modal' data-target='#" . $uneimage['nomFich'] . "' class='card card-tall'  alt=''>
+    $output='';
+    $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId WHERE C.nomCat='Life';";
+    $result = executeQuery($link, $query);
+    $images=$result;
+    $nbImage = 0;
+    foreach ($images as $uneimage) {
+      $output.= "
+      <img src='assets/img/".$uneimage['nomFich']."' data-toggle='modal' data-target='#".$uneimage['nomFich']."' class='card card-tall'  alt=''>
       </img>
       <!-- Modal -->
-      <div class='modal fade' id='" . $uneimage['nomFich'] . "'>
+      <div class='modal fade' id='".$uneimage['nomFich']."'>
         <div class='modal-dialog' role='document'>
           <div class='modal-content' style='width:650px;'>
             <div class='modal-header'>
-              <h5 class='modal-title' id='exampleModalLabel'>Details of this picture</h5>
+              <h5 class='modal-title' id='exampleModalLabel'>Description sheet</h5>
               <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
               </button>
             </div>
             <div class='modal-body'>
-            <img src='assets/img/" . $uneimage['nomFich'] . "'  style='width: 250px;height: 250px;margin-right:20px; float:left; '>
-            <div style='display: flex;justify-content: center; font-size: 1.2rem'>
-            <table class='table'>
-              <tbody>
-                <tr>
-                  <th>Description</th>
-                  <td>" . $uneimage['description'] . "</td>
-                </tr>
-                <tr>
-                  <th>Name of the file</th>
-                  <td>" . $uneimage['nomFich'] . "</td>
-                </tr>
-                <tr>
-                  <th>Category name</th>
-                  <td>" . $uneimage['nomCat'] . "</td>
-                </tr>
-              </tbody>
-            </table>
-            </div>
+            <img src='assets/img/".$uneimage['nomFich']."'  style='width: 250px;height: 250px;margin-right:20px;' align='left'>
+            <div> Description: ".$uneimage['description']."</div>
+          <div>File Name: ".$uneimage['nomFich']."</div>
+          <div>Category: ".$uneimage['nomCat']."</div>
             </div>
           </div>
         </div>
       </div>";
-    $nbImage++;
-  }
+      $nbImage++;
+    }
   return $output;
 }
 /* $alt = get_alt($link); */
@@ -78,8 +85,6 @@ function fill_image($link)
 
   <!-- Logo -->
   <link rel="icon" href="assets/img/pinter.png" type="image/icon type">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="materialize.css">
   <!-- Mon style -->
   <style>
     @import url('style.css');
@@ -103,34 +108,47 @@ function fill_image($link)
         <h1 class="brand"><a href="home.php">Pin<span>ter</span>est</a></h1>
         <ul>
           <li><a href="home.php">Home</a></li>
-          <li style="margin-top: -0.5625rem;">
-            <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Category &#8659;
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="Naturals.php" style="margin-left: 0px;margin-right: 0px;">Naturals</a>
-              <a class="dropdown-item" href="animals.php" style="margin-left: 0px;margin-right: 0px;">Animals</a>
-              <a class="dropdown-item" href="life.php" style="margin-left: 0px;margin-right: 0px;">Life</a>
-            </div>
-          </li>
-          <li>
-            <a href="./views/login.php">Login <i class="material-icons">face</i></a>
-          </li>
+          <?php if ($_SESSION["logged"]=="yes") {
+            echo "<li><a href='AddImage.php'>Add image</a></li>";
+          } ?>
+          <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Category
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="home.php">All images</a>
+          <a class="dropdown-item" href="animals.php">Animals</a>
+          <a class="dropdown-item" href="Naturals.php">Naturals</a>
+        </div>
+      </li>
+          <li><a href="#">More</a></li>
+          <?php if ($_SESSION["logged"]=="yes") {
+            echo "<form action='home.php' method='post'>
+            <li><a><input type='submit' name='logout' value='logout' style='border:none;background:none;' /></a></li>
+          </form>";
+          }
+          else {
+            echo "<li><a href='./views/login.php'>Login</a></li>";
+          }?>
         </ul>
       </nav>
     </div>
   </header>
+  <?php if ($_SESSION["logged"]=="yes") {
+    echo "<h1><strong>Welcome ".$_SESSION['pseudo']." <br/></strong></h1>";
+    echo AffDate($_SESSION["date"]);
+  }
+   ?>
 
   <!-- Partie sur les images  -->
-  <div style="margin: 1rem 25rem;">
-    <h1><strong>Galery Photo: Naturals</strong></h1>
-    <!-- Affichage des jeux  -->
-    <div>
-      <div class="photo-grid" id="fill_image">
-        <?php
+
+  <h1><strong>Galery Photo: Naturals</strong></h1>
+  <!-- Affichage des jeux  -->
+  <div>
+    <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
+      <?php
         echo fill_image($link);
-        ?>
-      </div>
+      ?>
     </div>
   </div>
 </body>

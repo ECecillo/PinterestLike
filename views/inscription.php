@@ -70,7 +70,7 @@ if (isset($_POST["valider"])) {
         <button type="submit" class="valider" name="valider">S'inscrice</button>
       </div>
     </div>
-    <div style="text-align: center; margin: 1rem;"> <a href="./index.php">Déjà inscrit ?</a> </div>
+    <div style="text-align: center; margin: 1rem;"> <a href="./login.php">Déjà inscrit ?</a> </div>
   </form>
 
 </body>
