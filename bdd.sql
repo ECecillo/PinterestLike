@@ -46,7 +46,7 @@ INSERT INTO Categorie (catId,nomCat)
 --
 
 CREATE TABLE IF NOT EXISTS Photo (
-  photoId int NOT NULL,
+  photoId int NOT NULL AUTO_INCREMENT,
   nomFich varchar(250) NOT NULL,
   description varchar(250) NOT NULL,
   catId int NOT NULL,
@@ -55,14 +55,14 @@ CREATE TABLE IF NOT EXISTS Photo (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-INSERT INTO Photo(photoId,nomFich,description,catId)
-            VALUES (1,'street.jpeg',"Street",3);
-INSERT INTO Photo(photoId,nomFich,description,catId)
-            VALUES (2,'stars.jpeg',"stars",1);
-INSERT INTO Photo(photoId,nomFich,description,catId)
-            VALUES (3,'birds.jpeg',"birds",2);
-INSERT INTO Photo(photoId,nomFich,description,catId)
-            VALUES (4,'bat.jpeg',"bats",2);
+INSERT INTO Photo(nomFich,description,catId)
+            VALUES ('street.jpeg',"Street",3);
+INSERT INTO Photo(nomFich,description,catId)
+            VALUES ('stars.jpeg',"stars",1);
+INSERT INTO Photo(nomFich,description,catId)
+            VALUES ('birds.jpeg',"birds",2);
+INSERT INTO Photo(nomFich,description,catId)
+            VALUES ('bat.jpeg',"bats",2);
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
@@ -74,10 +74,10 @@ INSERT INTO Photo(photoId,nomFich,description,catId)
 CREATE TABLE IF NOT EXISTS `utilisateur` (
   `pseudo` varchar(255) NOT NULL,
   `mdp` varchar(255) NOT NULL,
-  `couleur` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL,
   `etat` varchar(255) NOT NULL,
   PRIMARY KEY (`pseudo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO utilisateur(pseudo,mdp,couleur,etat)
-    VALUES ('root','root','red','disconnected');
+INSERT INTO utilisateur(pseudo,mdp,role,etat)
+    VALUES ('root','63a9f0ea7bb98050796b649e85481845','root','disconnected');

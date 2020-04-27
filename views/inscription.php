@@ -1,7 +1,10 @@
 <?php
 session_start();
-require_once '../fonctions/bd.php';
-require_once '../fonctions/utilisateur.php';
+require_once ('../config/configuration.php');
+require_once ('.'.PATH_LIB . 'bd.php');
+require_once ('.'.PATH_LIB . 'utilisateur.php');
+require_once ('.'.PATH_LIB . 'discussion.php');
+require_once ('.'.PATH_LIB . 'add_funct.php');
 
 $stateMsg = "";
 
@@ -16,39 +19,73 @@ if (isset($_POST["valider"])) {
   if ($hashMdp == $hashConfirmMdp) {
     if ($available) {
       register($pseudo, $hashMdp, $link);
-      header('Location: index.php?subscribe=yes');
+      $_SESSION["pseudo"]= $pseudo;
+      $_SESSION["mdp"]= $hashMdp;
+      date_default_timezone_set('Europe/Paris');
+      $_SESSION["date"]=date('d-m-Y H:i:s');
+      setConnected($pseudo, $link);
+      $_SESSION["logged"]="yes";
+      header('Location: ../home.php');
       exit();
     } else {
-      echo "Le pseudo demand&eacute; est d&eacute;j&agrave; utilis&eacute;";
+      echo "Le pseudo demandé est déjà utilié";
     }
   } else {
-     echo "Les mots de passe ne correspondent pas, veuillez r&eacute;essayer";
+     echo "Les mots de passe ne correspondent pas, veuillez réessayer";
   }
 }
 // echo isset($_POST["valider"]);
 ?>
 
-<!doctype html>
-<html lang="fr">
-
-<head>
-  <meta charset="utf-8">
-  <title>Inscription</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+<?php include('v_head_category.php'); ?>
 
 <body>
-  <style>
-    body {
-      width: 50%;
-      padding: 10% 22%;
-      justify-content: center;
-      /* text-align: center; */
-    }
-  </style>
+  <div class="menu-toggle" id="hamburger">
+    <i class="fas fa-bars"></i>
+  </div>
+  <div class="overlay"></div>
+  <div class="container">
+    <nav>
+      <h1 class="brand"><a href="../home.php">Pin<span>ter</span>est</a></h1>
+      <ul>
+        <li><a href="../home.php">Home</a></li>
+        <?php  if (isset($_SESSION["logged"])){
+        if ($_SESSION["logged"]=="yes") {
+            echo "<li><a href='../AddImage.php'>Add image</a></li>";
+          }
+        }?>
+        <li style="margin-top: -0.5625rem;">
+          <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Category &#8659;
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="Naturals.php" style="margin-left: 0px;margin-right: 0px;">Naturals</a>
+            <a class="dropdown-item" href="animals.php" style="margin-left: 0px;margin-right: 0px;">Animals</a>
+            <a class="dropdown-item" href="life.php" style="margin-left: 0px;margin-right: 0px;">Life</a>
+          </div>
+        </li>
+        <li>
+          <?php   if (isset($_SESSION["logged"])){
+          if ($_SESSION["logged"]=="yes") {
+           echo "<form action='home.php' method='post'>
+           <li><a><input type='submit' name='logout' value='logout' style='border:none;background:none;' /></a></li>
+         </form>";
+         }
+         else {
+           echo "<li><a href='login.php'>Login</a></li>";
+         }
+       }
+         else {
+           echo "<li><a href='login.php'>Login</a></li>";
+         }?>
+
+        </li>
+      </ul>
+    </nav>
+  </div>
 
   <!-- à compléter -->
-  <h1 style="text-align: center;">Inscription à la BDW</h1>
+  <h1 style="text-align: center;color:red">Inscription à la BDW</h1>
   <form action="inscription.php" style="border:2px solid #ccc; border-radius: 30px;" method="POST">
     <div class="container">
       <div class="fillform" style="margin: 1rem;">
@@ -66,11 +103,10 @@ if (isset($_POST["valider"])) {
         <br>
       </div>
       <div class="butt" style="text-align: center; margin: 1rem;">
-        <button type="button" class="cancelbtn">Annuler</button>
         <button type="submit" class="valider" name="valider">S'inscrice</button>
       </div>
     </div>
-    <div style="text-align: center; margin: 1rem;"> <a href="./login.php">Déjà inscrit ?</a> </div>
+    <div style="text-align: center; margin: 1rem;"> <a href="login.php">Déjà inscrit ?</a> </div>
   </form>
 
 </body>

@@ -29,6 +29,7 @@ body::-webkit-scrollbar-thumb {
     background: #1a1919;
 }
 
+
 :root {
     /* Varible pour les couleurs :  */
     --text-primary: #b6b6b6;
@@ -461,22 +462,7 @@ nav ul li a:hover::after{
 
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     grid-auto-rows: 240px;
-  }
-	
 
-
-
-
-
-  /* Medium screens */
-  @media screen and (min-width: 600px) {
-    .card-tall {
-      grid-row: span 2 / auto;
-    }
-
-    .card-wide {
-      grid-column: span 2 / auto;
-    }
   }
 
 
@@ -485,6 +471,7 @@ nav ul li a:hover::after{
   @media screen and (min-width: 600px) {
     .card-tall {
       grid-row: span 2 / auto;
+      grid-column: span 1 / auto;
       /* grid-column: span 2/ auto; */
     }
 

@@ -1,17 +1,18 @@
 <?php
 session_start();
-require_once '../fonctions/bd.php';
-require_once '../fonctions/utilisateur.php';
-
+require_once ('../config/configuration.php');
+require_once ('.'.PATH_LIB . 'bd.php');
+require_once ('.'.PATH_LIB . 'utilisateur.php');
+require_once ('.'.PATH_LIB . 'discussion.php');
+require_once ('.'.PATH_LIB . 'add_funct.php');
 $stateMsg = "";
 
 if (isset($_POST["valider"])) {
   $pseudo = $_POST["pseudo"];
-  $hashMdp = $_POST["mdp"];
+  $hashMdp = md5($_POST["mdp"]);
 
   $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
   $check = getUser($pseudo, $hashMdp, $link);
-  echo $check;
 
   if (getUser($pseudo, $hashMdp, $link) == TRUE) {
     $_SESSION["pseudo"]= $pseudo;
@@ -24,31 +25,60 @@ if (isset($_POST["valider"])) {
     exit();
   }
   else {
-    /*$stateMsg = */ echo "Le couple pseudo/mot de passe ne correspond à aucun utilisateur enregistré";
+    echo "Le couple pseudo/mot de passe ne correspond à aucun utilisateur enregistré";
   }
-echo $stateMsg;
 }
 
 
 ?>
 
-<!doctype html>
-<html lang="fr">
+<?php include('v_head_category.php'); ?>
 
-<head>
-  <meta charset="utf-8">
-  <title>Page d'accueil</title>
-</head>
 
 <body>
-  <style>
-    body {
-      width: 50%;
-      padding: 10% 22%;
-      justify-content: center;
-      /* text-align: center; */
-    }
-  </style>
+  <div class="menu-toggle" id="hamburger">
+    <i class="fas fa-bars"></i>
+  </div>
+  <div class="overlay"></div>
+  <div class="container">
+    <nav>
+      <h1 class="brand"><a href="../home.php">Pin<span>ter</span>est</a></h1>
+      <ul>
+        <li><a href="../home.php">Home</a></li>
+        <?php  if (isset($_SESSION["logged"])){
+        if ($_SESSION["logged"]=="yes") {
+            echo "<li><a href='../AddImage.php'>Add image</a></li>";
+          }
+        }?>
+        <li style="margin-top: -0.5625rem;">
+          <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Category &#8659;
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="Naturals.php" style="margin-left: 0px;margin-right: 0px;">Naturals</a>
+            <a class="dropdown-item" href="animals.php" style="margin-left: 0px;margin-right: 0px;">Animals</a>
+            <a class="dropdown-item" href="life.php" style="margin-left: 0px;margin-right: 0px;">Life</a>
+          </div>
+        </li>
+        <li>
+          <?php   if (isset($_SESSION["logged"])){
+          if ($_SESSION["logged"]=="yes") {
+           echo "<form action='home.php' method='post'>
+           <li><a><input type='submit' name='logout' value='logout' style='border:none;background:none;' /></a></li>
+         </form>";
+         }
+         else {
+           echo "<li><a href='login.php'>Login</a></li>";
+         }
+       }
+         else {
+           echo "<li><a href='login.php'>Login</a></li>";
+         }?>
+
+        </li>
+      </ul>
+    </nav>
+  </div>
   <!-- à compléter -->
   <h1 style="text-align: center; color:red">Bienvenue sur Pinterest</h1>
   <form action="login.php" style="border:2px solid #ccc; border-radius: 30px;" method="POST">
@@ -64,7 +94,6 @@ echo $stateMsg;
         <br>
       </div>
       <div class="butt" style="text-align: center; margin: 1rem;">
-        <button type="button" class="cancelbtn"><b>Annuler</b></button>
         <button type="submit" class="valider" name="valider"><b>Se Connecter</b></button>
       </div>
     </div>
