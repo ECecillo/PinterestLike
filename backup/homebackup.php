@@ -48,7 +48,7 @@ if (isset($_POST["valider"])) {
   </script>
 
   <!-- Logo -->
-  <link rel="icon" href="./img/pinter.png" type="image/icon type"> 
+  <link rel="icon" href="./img/pinter.png" type="image/icon type">
   <!-- Mon style -->
   <style>
     @import url('style.css');

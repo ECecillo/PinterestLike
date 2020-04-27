@@ -43,9 +43,7 @@ function register($pseudo, $hashPwd, $link)
   } */
   if(checkAvailability($pseudo, $link)){
 
-	$couleur = array('red', 'green', 'blue', 'black', 'yellow', 'orange');
-	$Aleat = $couleur[rand(0,5)];
-	$query="INSERT INTO utilisateur (pseudo,mdp,couleur,etat) VALUES ('$pseudo','$hashPwd','$Aleat','disconnected')";
+	$query="INSERT INTO utilisateur (pseudo,mdp,role,etat) VALUES ('$pseudo','$hashPwd','user','disconnected')";
 	executeUpdate($link, $query);
 	}
 	else{
