@@ -29,7 +29,7 @@
           <?php  if (isset($_SESSION["logged"])){
           if ($_SESSION["logged"]=="yes") {
            echo "<form action='home.php' method='post'>
-           <li><a><input type='submit' name='logout' value='logout' style='border:none;background:none;' /></a></li>
+           <li><a><input type='submit' name='logout' value='logout' style='border:none;background:none;'/></a></li>
          </form>";
          }
          else {
