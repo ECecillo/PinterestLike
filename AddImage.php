@@ -8,6 +8,7 @@ require_once (PATH_LIB . 'add_funct.php');
 
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
+
 if (isset($_POST["validate"])) {
   $nameImage = pathinfo($_FILES['Image']['name']);
   $extension = $nameImage['extension'];
