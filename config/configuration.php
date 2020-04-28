@@ -33,6 +33,9 @@ define('PATH_TEXTES','./languages/');
 define('PATH_CSS', PATH_ASSETS.'style/');
 define('PATH_IMG', PATH_ASSETS.'img/');
 define('PATH_SCRIPT', PATH_ASSETS.'script/');
+define('PATH_CSS_CAT','.'.PATH_ASSETS.'style/');
+define('PATH_IMG_CAT','.'.PATH_ASSETS.'img/');
+define('PATH_SCRIPT_CAT','.'.PATH_ASSETS.'img/');
 //define("PATH_GALERIE",'galerie/');
 //define('PATH_LOG','log/');
 
