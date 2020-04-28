@@ -1,41 +1,95 @@
 <?php
 session_start();
-require_once 'fonctions/bd.php';
-require_once 'fonctions/utilisateur.php';
+require_once ('./config/configuration.php');
+require_once (PATH_LIB . 'bd.php');
+require_once (PATH_LIB . 'utilisateur.php');
+require_once (PATH_LIB . 'discussion.php');
+require_once (PATH_LIB . 'add_funct.php');
+
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
-function fill_category($link)
-{
-  $output='';
-  $query = "SELECT * from `Categorie`;";
-  $result = executeQuery($link, $query);
-  $cat=$result;
-  foreach ($cat as $cat1) {
-    $output .=  '<option value="'.$cat1["catId"].'">'.$cat1["nomCat"].'</option>';
+if (isset($_POST["validate"])) {
+  $nameImage = pathinfo($_FILES['Image']['name']);
+  $extension = $nameImage['extension'];
+  $extension_accept = array("jpeg", "jpg", "gif");
+  if (!(in_array($extension, $extension_accept))) {
+    echo "File does not have expected extension. </br>";
+  }
+  $size_max = 104860;
+  $size_Image = filesize($_FILES['Image']['tmp_name']);
+   if ($size_Image> $size_max){
+     echo "You have exceeded the allowed file size. </br>";
+   }
+   else {
+     $destination_directory=dirname(__FILE__)."/assets/img/";
+     move_uploaded_file($_FILES["Image"]["tmp_name"],$destination_directory.$_POST["Description"]."_".$_SESSION["pseudo"].".".$extension);
+     $req="INSERT INTO Photo("."nomFich,description,catId".")
+                 VALUES (" .
+                                "'" .$_POST["Description"]."_". $_SESSION["pseudo"] .".".$extension."', " .
+                                "'" . $_POST["Description"]. "', " .
+                                "'" . $_POST["Category"]. "')";
+     executeUpdate($link, $req);
+     header('Location: description.php');
+   }
 
- }
- return $output;
 }
 
 ?>
 
-<!doctype html>
-<html lang="en">
+<?php include(PATH_VIEWS . 'v_head.php'); ?>
 
-<head>
-  <meta charset="utf-8">
-  <title>AddImage</title>
-</head>
 
 <body>
-  <style>
-    body {
-      width: 50%;
-      padding: 10% 22%;
-      justify-content: center;
-      /* text-align: center; */
-    }
-  </style>
+  <div class="menu-toggle" id="hamburger">
+    <i class="fas fa-bars"></i>
+  </div>
+  <div class="overlay"></div>
+  <div class="container">
+    <nav>
+      <h1 class="brand"><a href="home.php">Pin<span>ter</span>est</a></h1>
+      <ul>
+        <li><a href="../home.php">Home</a></li>
+        <?php  if (isset($_SESSION["logged"])){
+        if ($_SESSION["logged"]=="yes") {
+            echo "<li><a href='AddImage.php'>Add image</a></li>";
+          }
+        }?>
+        <li style="margin-top: -0.5625rem;">
+          <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Category &#8659;
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="Naturals.php" style="margin-left: 0px;margin-right: 0px;">Naturals</a>
+            <a class="dropdown-item" href="animals.php" style="margin-left: 0px;margin-right: 0px;">Animals</a>
+            <a class="dropdown-item" href="life.php" style="margin-left: 0px;margin-right: 0px;">Life</a>
+          </div>
+        </li>
+        <li>
+          <?php   if (isset($_SESSION["logged"])){
+          if ($_SESSION["logged"]=="yes") {
+           echo "<form action='home.php' method='post'>
+           <li><a><input type='submit' name='logout' value='logout' style='border:none;background:none;' /></a></li>
+         </form>";
+         }
+         else {
+           echo "<li><a href='login.php'>Login</a></li>";
+         }
+       }
+         else {
+           echo "<li><a href='login.php'>Login</a></li>";
+         }?>
+
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <?php if (isset($_SESSION["logged"])){
+  if ($_SESSION["logged"]=="yes") {
+    echo "<h1><strong>Welcome ".$_SESSION['pseudo']." <br/></strong></h1>";
+    echo AffDate($_SESSION["date"]);
+  }
+}
+   ?>
   <!-- à compléter -->
   <h1 style="text-align: center; color:red">Add Image</h1>
   <form enctype="multipart/form-data" action="AddImage.php" style="border:2px solid #ccc; border-radius: 30px;" method="POST">
@@ -43,23 +97,24 @@ function fill_category($link)
       <div class="fillform" style="margin: 1rem;">
         <label for="image"><b>Add image:</b></label>
         <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-        <input type="file"  name="pseudo"  value="parcourir" required>
+        <input type="file"  name="Image"  value="parcourir" required>
         <br>
         <br>
-        <label for=""><b>Categorie:</b></label>
-        <select id="Image"name="Image">
+        <label for=""><b>Categorie: </b></label>
+        <select id="Image"name="Category" required>
+          <option value=""> select a Category </option>
           <?php echo fill_category($link);?>
           </select>
         <br>
         <br>
+        <label for"image"><b> Description: </b></label>
+        <input type="text" placeholder="Enter Description" name="Description" required>
+        <br>
       </div>
       <div class="butt" style="text-align: center; margin: 1rem;">
-        <button type="button" class="cancelbtn"><b>Annuler</b></button>
-        <button type="submit" class="valider" name="valider"><b>Se Connecter</b></button>
+        <button type="submit" class="valider" name="validate"><b>Validate</b></button>
       </div>
     </div>
-    <div style="text-align: center; margin: 1rem;"> <a href="./inscription.php">Première connexion ?</a> </div>
-
   </form>
 </body>
 

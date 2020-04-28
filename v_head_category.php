@@ -19,11 +19,11 @@
   <!-- Logo -->
   <link rel="icon" href="assets/img/pinter.png" type="image/icon type">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="<?= PATH_CSS ?>materialize.css">
+  <link rel="stylesheet" href="<?= PATH_CSS_CAT ?>materialize.css">
   <!-- Mon style -->
   <style>
-    @import url('<?= PATH_CSS ?>style.css');
+    @import url('<?= PATH_CSS_CAT ?>style.css');
   </style>
   <!-- Mon script -->
-  <link rel="script" href="<?= PATH_SCRIPT ?>script.js">
+  <link rel="script" href="<?= PATH_SCRIPT_CAT ?>script.js">
 </head>
