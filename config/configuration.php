@@ -10,9 +10,9 @@
 const DEBUG = true; // production : false; dev : true
 
 // Accès base de données
-const BD_HOST = '';
-const BD_DBNAME = '';
-const BD_USER = '';
+const BD_HOST = 'localhost';
+const BD_DBNAME = 'project';
+const BD_USER = 'root';
 const BD_PWD = '';
 
 // Langue du site

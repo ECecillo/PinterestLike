@@ -15,9 +15,9 @@ if (isset($_POST["validate"])) {
   if (!(in_array($extension, $extension_accept))) {
     echo "File does not have expected extension. </br>";
   }
-  $size_max = 104860;
+  $size_max = 904860;
   $size_Image = filesize($_FILES['Image']['tmp_name']);
-   if ($size_Image> $size_max){
+   if ($size_Image > $size_max){
      echo "You have exceeded the allowed file size. </br>";
    }
    else {
@@ -107,7 +107,7 @@ if (isset($_POST["validate"])) {
           </select>
         <br>
         <br>
-        <label for"image"><b> Description: </b></label>
+        <label for="image"><b> Description: </b></label>
         <input type="text" placeholder="Enter Description" name="Description" required>
         <br>
       </div>

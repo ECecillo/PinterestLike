@@ -1,22 +1,21 @@
 <?php
 session_start();
-require_once ('./config/configuration.php');
-require_once (PATH_LIB . 'bd.php');
-require_once (PATH_LIB . 'utilisateur.php');
-require_once (PATH_LIB . 'discussion.php');
-require_once (PATH_LIB . 'add_funct.php');
+require_once('./config/configuration.php');
+require_once(PATH_LIB . 'bd.php');
+require_once(PATH_LIB . 'utilisateur.php');
+require_once(PATH_LIB . 'discussion.php');
+require_once(PATH_LIB . 'add_funct.php');
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
+
 if (isset($_POST["logout"])) {
+  $pseudo = $_SESSION['pseudo'];
+  $mdp = $_SESSION['mdp'];
+  $check = getUser($pseudo, $mdp, $link);
 
-  $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
-  $check = getUser($_SESSION["pseudo"], $_SESSION["mdp"], $link);
-
-  if (getUser($_SESSION["pseudo"], $_SESSION["mdp"], $link)== TRUE) {
-    setDisconnected($_SESSION["pseudo"], $link);
-    $_SESSION["pseudo"]= '';
-    $_SESSION["mdp"]='';
-    $_SESSION["logged"]="no";
+  if ($check) {
+    setDisconnected($pseudo, $link);
+    session_unset();
     header('Location: home.php');
     exit();
   }
@@ -30,13 +29,13 @@ if (isset($_POST["logout"])) {
 <body>
   <?php include(PATH_VIEWS . 'header.php'); ?>
 
-  <?php if (isset($_SESSION["logged"])){
-  if ($_SESSION["logged"]=="yes") {
-    echo "<h1><strong>Welcome ".$_SESSION['pseudo']." <br/></strong></h1>";
-    echo AffDate($_SESSION["date"]);
+  <?php if (isset($_SESSION["logged"])) {
+    if ($_SESSION["logged"] == "yes") {
+      echo "<h1><strong>Welcome " . $_SESSION['pseudo'] . " <br/></strong></h1>";
+      echo AffDate($_SESSION["date"]);
+    }
   }
-}
-   ?>
+  ?>
 
   <!-- Partie sur les images  -->
 
@@ -46,12 +45,12 @@ if (isset($_POST["logout"])) {
   <div class="category_selector">
     <div class="btn-group dropright">
       <form method="post" action="home.php">
-      <select id="Image"name="Image">
-        <option value=""> select a Category </option>
-        <?php echo fill_category($link);?>
+        <select id="Image" name="Image">
+          <option value=""> select a Category </option>
+          <?php echo fill_category($link); ?>
         </select>
-           <input type="submit" name="Valider" value="OK"/>
-    </form>
+        <input type="submit" name="Valider" value="OK" />
+      </form>
     </div>
   </div>
 
@@ -60,7 +59,7 @@ if (isset($_POST["logout"])) {
   <div>
     <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
       <?php
-        echo fill_image($link);
+      echo fill_image($link);
       ?>
     </div>
   </div>
