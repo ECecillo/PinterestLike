@@ -7,26 +7,26 @@
   <div class="overlay"></div>
   <div class="container">
     <nav>
-      <h1 class="brand"><a href="home.php">Pin<span>ter</span>est</a></h1>
+      <h1 class="brand"><a href="../home.php">Pin<span>ter</span>est</a></h1>
       <ul>
-        <li><a href="home.php">Home</a></li>
-        <?php if (isset($_SESSION["logged"])) {
-          if ($_SESSION["logged"] == "yes") {
-            echo "<li><a href='AddImage.php'>Add image</a></li>";
+        <li><a href="../home.php">Home</a></li>
+        <?php  if (isset($_SESSION["logged"])){
+        if ($_SESSION["logged"]=="yes") {
+            echo "<li><a href='../AddImage.php'>Add image</a></li>";
           }
-        } ?>
+        }?>
         <li style="margin-top: -0.5625rem;">
-          <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 2rem;">
+          <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Category 
             <span class="material-icons">
               expand_more
             </span>
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-radius: 1rem">
-            <a class="dropdown-item" href="<?= PATH_VIEWS ?>Naturals.php" style="margin-left: 0px;margin-right: 0px; padding-right: 5.5rem;">Naturals</a>
-            <a class="dropdown-item" href="<?= PATH_VIEWS ?>animals.php" style="margin-left: 0px;margin-right: 0px;">Animals</a>
-            <a class="dropdown-item" href="<?= PATH_VIEWS ?>life.php" style="margin-left: 0px;margin-right: 0px;">Life</a>
-          </div> 
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="Naturals.php" style="margin-left: 0px;margin-right: 0px;">Naturals</a>
+            <a class="dropdown-item" href="animals.php" style="margin-left: 0px;margin-right: 0px;">Animals</a>
+            <a class="dropdown-item" href="life.php" style="margin-left: 0px;margin-right: 0px;">Life</a>
+          </div>
         </li>
         <?php if (isset($_SESSION["logged"])) {
           if ($_SESSION["logged"] == "yes") {
@@ -61,10 +61,10 @@
               </div>
             </li>';
           } else {
-            echo "<li><a href='./views/login.php'>Login</a></li>";
+            echo "<li><a href='login.php'>Login</a></li>";
           }
         } else {
-          echo "<li><a href='./views/login.php'>Login</a></li>";
+          echo "<li><a href='login.php'>Login</a></li>";
         } ?>
       </ul>
     </nav>

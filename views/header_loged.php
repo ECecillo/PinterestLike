@@ -12,7 +12,10 @@
         <li><a href="#">Home</a></li>
         <li style="margin-top: -0.5625rem;">
           <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Category &#8659;
+            Category
+            <span class="material-icons">
+              expand_more
+            </span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="<?= PATH_VIEWS ?>Naturals.php" style="margin-left: 0px;margin-right: 0px;">Naturals</a>

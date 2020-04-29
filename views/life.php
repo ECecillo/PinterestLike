@@ -31,16 +31,8 @@ if (isset($_POST["logout"])) {
 
   <?php include('headers_category.php'); ?>
 
-  <?php  if (isset($_SESSION["logged"])){
-   if ($_SESSION["logged"]=="yes") {
-    echo "<h1><strong>Welcome ".$_SESSION['pseudo']." <br/></strong></h1>";
-    echo AffDate($_SESSION["date"]);
-  }
-}
-   ?>
-
   <!-- Partie sur les images  -->
-
+  <div class="container" style="margin-top: 2rem;">
   <h1><strong>Galery Photo: Naturals</strong></h1>
   <!-- Affichage des jeux  -->
   <div>
@@ -49,6 +41,7 @@ if (isset($_POST["logout"])) {
         echo fill_image_life($link);
       ?>
     </div>
+  </div>
   </div>
 </body>
 
