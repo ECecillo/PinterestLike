@@ -12,11 +12,11 @@ $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
 if (isset($_POST["validate"])) {
   $nameImage = pathinfo($_FILES['Image']['name']);
   $extension = $nameImage['extension'];
-  $extension_accept = array("jpeg", "jpg", "gif");
+  $extension_accept = array("png", "jpg", "gif");
   if (!(in_array($extension, $extension_accept))) {
     echo "File does not have expected extension. </br>";
   }
-  $size_max = 904860;
+  $size_max = 104860;
   $size_Image = filesize($_FILES['Image']['tmp_name']);
   if ($size_Image > $size_max) {
     echo "You have exceeded the allowed file size. </br>";
@@ -25,6 +25,7 @@ if (isset($_POST["validate"])) {
     $pseud = $_SESSION["pseudo"];
     $cate = $_POST["Category"];
     $constName = $description . '_' . $pseud . '.' . $extension;
+    
     $destination_directory = dirname(__FILE__) . "/assets/img/";
     move_uploaded_file($_FILES["Image"]["tmp_name"], $destination_directory . $constName);
     $req = "INSERT INTO Photo(nomFich,`description`,catId) VALUES ('$constName', '$description',  '$cate')";
@@ -39,54 +40,7 @@ if (isset($_POST["validate"])) {
 
 
 <body>
-  <div class="menu-toggle" id="hamburger">
-    <i class="fas fa-bars"></i>
-  </div>
-  <div class="overlay"></div>
-  <div class="container">
-    <nav>
-      <h1 class="brand"><a href="home.php">Pin<span>ter</span>est</a></h1>
-      <ul>
-        <li><a href="home.php">Home</a></li>
-        <?php if (isset($_SESSION["logged"])) {
-          if ($_SESSION["logged"] == "yes") {
-            echo "<li><a href='AddImage.php'>Add image</a></li>";
-          }
-        } ?>
-        <li style="margin-top: -0.5625rem;">
-          <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Category &#8659;
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="Naturals.php" style="margin-left: 0px;margin-right: 0px;">Naturals</a>
-            <a class="dropdown-item" href="animals.php" style="margin-left: 0px;margin-right: 0px;">Animals</a>
-            <a class="dropdown-item" href="life.php" style="margin-left: 0px;margin-right: 0px;">Life</a>
-          </div>
-        </li>
-        <li>
-          <?php if (isset($_SESSION["logged"])) {
-            if ($_SESSION["logged"] == "yes") {
-              echo "<form action='home.php' method='post'>
-           <li><a><input type='submit' name='logout' value='logout' style='border:none;background:none;' /></a></li>
-         </form>";
-            } else {
-              echo "<li><a href='login.php'>Login</a></li>";
-            }
-          } else {
-            echo "<li><a href='login.php'>Login</a></li>";
-          } ?>
-
-        </li>
-      </ul>
-    </nav>
-  </div>
-  <?php if (isset($_SESSION["logged"])) {
-    if ($_SESSION["logged"] == "yes") {
-      echo "<h1><strong>Welcome " . $_SESSION['pseudo'] . " <br/></strong></h1>";
-      echo AffDate($_SESSION["date"]);
-    }
-  }
-  ?>
+  <?php include(PATH_VIEWS . 'header.php'); ?>
   <!-- à compléter -->
   <h1 style="text-align: center; color:red">Add Image</h1>
   <form enctype="multipart/form-data" action="AddImage.php" style="border:2px solid #ccc; border-radius: 30px;" method="POST">

@@ -38,7 +38,7 @@ if (isset($_POST["logout"])) {
   <div>
     <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
       <?php
-        echo fill_image_natural($link);
+        echo fill_image_natural($link, PATH_IMG_FROM_VIEWS);
       ?>
     </div>
   </div>
