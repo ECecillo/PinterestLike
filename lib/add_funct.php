@@ -53,7 +53,7 @@ function fill_image($link)
   $nbImage = 0;
   foreach ($images as $uneimage) {
     $output .= "
-      <a class='card card-tall' style='background-image: url(assets/img/" . $uneimage['nomFich'] . ");' data-toggle='modal' data-target='#" . $uneimage['nomFich'] . "'>
+      <a class='card card-tall' style='background-image: url(". PATH_IMG . $uneimage['nomFich'] . ");' data-toggle='modal' data-target='#" . $uneimage['nomFich'] . "'>
       </a>
       <!-- Modal -->
       <div class='modal fade' id='" . $uneimage['nomFich'] . "'>
@@ -66,7 +66,7 @@ function fill_image($link)
               </button>
             </div>
             <div class='modal-body'>
-            <img src='assets/img/" . $uneimage['nomFich'] . "'  style='width: 250px;height: 250px;margin-right:20px; float:left; '>
+            <img src='". PATH_IMG . $uneimage['nomFich'] . "'  style='width: 250px;height: 250px;margin-right:20px; float:left; '>
             <div style='display: flex;justify-content: center; font-size: 1.2rem'>
             <table class='table'>
               <tbody>
@@ -94,7 +94,7 @@ function fill_image($link)
   return $output;
 }
 
-function fill_image_natural($link)
+function fill_image_natural($link, $path)
 {
     $output='';
     $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId WHERE C.nomCat='Naturals';";
@@ -103,7 +103,7 @@ function fill_image_natural($link)
     $nbImage = 0;
     foreach ($images as $uneimage) {
       $output.= "
-      <a class='card card-tall' style='background-image: url(../assets/img/" . $uneimage['nomFich'] . ");' data-toggle='modal' data-target='#" . $uneimage['nomFich'] . "'>
+      <a class='card card-tall' style='background-image: url(". $path . $uneimage['nomFich'] . ");' data-toggle='modal' data-target='#" . $uneimage['nomFich'] . "'>
       </a>
       <!-- Modal -->
       <div class='modal fade' id='" . $uneimage['nomFich'] . "'>
@@ -116,7 +116,7 @@ function fill_image_natural($link)
               </button>
             </div>
             <div class='modal-body'>
-            <img src='../assets/img/" . $uneimage['nomFich'] . "'  style='width: 250px;height: 250px;margin-right:20px; float:left; '>
+            <img src='". $path . $uneimage['nomFich'] . "'  style='width: 250px;height: 250px;margin-right:20px; float:left; '>
             <div style='display: flex;justify-content: center; font-size: 1.2rem'>
             <table class='table'>
               <tbody>
@@ -144,7 +144,7 @@ function fill_image_natural($link)
   return $output;
 }
 
-function fill_image_animals($link)
+function fill_image_animals($link, $path)
 {
     $output='';
     $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId WHERE C.nomCat='animals';";
@@ -153,7 +153,7 @@ function fill_image_animals($link)
     $nbImage = 0;
     foreach ($images as $uneimage) {
       $output.= "
-      <a class='card card-tall' style='background-image: url(../assets/img/" . $uneimage['nomFich'] . ");' data-toggle='modal' data-target='#" . $uneimage['nomFich'] . "'>
+      <a class='card card-tall' style='background-image: url(". $path . $uneimage['nomFich'] . ");' data-toggle='modal' data-target='#" . $uneimage['nomFich'] . "'>
       </a>
       <!-- Modal -->
       <div class='modal fade' id='" . $uneimage['nomFich'] . "'>
@@ -166,7 +166,7 @@ function fill_image_animals($link)
               </button>
             </div>
             <div class='modal-body'>
-            <img src='../assets/img/" . $uneimage['nomFich'] . "'  style='width: 250px;height: 250px;margin-right:20px; float:left; '>
+            <img src='". $path . $uneimage['nomFich'] . "'  style='width: 250px;height: 250px;margin-right:20px; float:left; '>
             <div style='display: flex;justify-content: center; font-size: 1.2rem'>
             <table class='table'>
               <tbody>
@@ -194,7 +194,7 @@ function fill_image_animals($link)
   return $output;
 }
 
-function fill_image_life($link)
+function fill_image_life($link, $path)
 {
     $output='';
     $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId WHERE C.nomCat='life';";
@@ -203,7 +203,7 @@ function fill_image_life($link)
     $nbImage = 0;
     foreach ($images as $uneimage) {
       $output.= "
-      <a class='card card-tall' style='background-image: url(../assets/img/" . $uneimage['nomFich'] . ");' data-toggle='modal' data-target='#" . $uneimage['nomFich'] . "'>
+      <a class='card card-tall' style='background-image: url(". $path . $uneimage['nomFich'] . ");' data-toggle='modal' data-target='#" . $uneimage['nomFich'] . "'>
       </a>
       <!-- Modal -->
       <div class='modal fade' id='" . $uneimage['nomFich'] . "'>
@@ -216,7 +216,7 @@ function fill_image_life($link)
               </button>
             </div>
             <div class='modal-body'>
-            <img src='../assets/img/" . $uneimage['nomFich'] . "'  style='width: 250px;height: 250px;margin-right:20px; float:left; '>
+            <img src='". $path . $uneimage['nomFich'] . "'  style='width: 250px;height: 250px;margin-right:20px; float:left; '>
             <div style='display: flex;justify-content: center; font-size: 1.2rem'>
             <table class='table'>
               <tbody>
@@ -252,7 +252,7 @@ function last_image_post($link){
   $nbImage = 0;
   foreach ($images as $uneimage) {
     $output.= "
-          <img src='assets/img/" . $uneimage['nomFich'] . "'  style='width: 250px;height: 250px;margin-right:20px; float:left; '>
+          <img src='". PATH_IMG . $uneimage['nomFich'] . "'  class='card card-tall'>
           <div style='display: flex;justify-content: center; font-size: 1.2rem'>
           <table class='table'>
             <tbody>
@@ -275,4 +275,28 @@ function last_image_post($link){
   }
 return $output;
 }
-?>
+
+function get_image_off_cat ($link) {
+  $path = PATH_IMG;
+  $query = 'SELECT P.catId from Photo P join Categorie C on C.catId=P.catId  ORDER BY P.photoId DESC LIMIT 1;';
+  $result = executeQuery($link, $query);
+  $id = 0;
+  foreach ($result as $imageid) {
+    switch ($imageid['catId']) {
+      case 1:
+        echo fill_image_natural($link, $path);
+        break;
+      case 2:
+        echo fill_image_animals($link, $path);
+        break;
+      case 3:
+        echo fill_image_life($link, $path);
+        break;
+      
+      default:
+        echo "erreur dans la requête";
+    }
+    $id++;
+  }
+  
+}

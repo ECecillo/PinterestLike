@@ -48,14 +48,12 @@
                   Connected since: <br>'.$dateUser.'
                 </small>
                 <div class="dropdown-divider"></div>
-                <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin: 0">
-                  Your picture
-                </a>
+                <a class="dropdown-item" href="User_profile.php" style="margin-left: 0px;margin-right: 0px;">Your profile</a>
                 <div class="dropdown-divider"></div>
-                <form action="home.php" method="post" class="logout-container">
+                <form action="../home.php" method="post" class="logout-container">
                   <a class="dropdown-item log-butt" style="background-color: crimson;">
                     <span class="material-icons">clear</span>
-                    <input type="submit" name="logout" value="Logout" style="border:none;background-color: crimson;"/>
+                    <input type="submit" name="logout" value="Logout" style="border:none;background-color: crimson; cursor:pointer;"/>
                   </a>
                 </form>
               </div>

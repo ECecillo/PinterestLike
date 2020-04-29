@@ -393,8 +393,10 @@ nav ul li a:hover::after {
   justify-content: center;
   margin: 0 1rem;
 }
+
 .logout-container {
   padding: 0 1.6rem;
+  cursor: pointer;
 }
 
 .log-butt {
@@ -469,29 +471,6 @@ nav ul li a:hover::after {
   --bg-secondary: #e4e4e4;
 }
 
-.solar {
-  --text-primary: #576e75;
-  --text-secondary: #35535c;
-  --bg-primary: #fdf6e3;
-  --bg-secondary: #f5e5b8;
-}
-
-.theme-icon {
-  display: none;
-}
-
-.dark #darkIcon {
-  display: block;
-}
-
-.light #lightIcon {
-  display: block;
-}
-
-.solar #solarIcon {
-  display: block;
-}
-
 
 .photo-grid {
   display: grid;
@@ -499,7 +478,35 @@ nav ul li a:hover::after {
 
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   grid-auto-rows: 240px;
+}
 
+/* Style de la page description */
+
+.title_container {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+/* Pour que le tableau aille bien à côté de l'image */
+.desc_image {
+  display: flex;
+  justify-content: center;
+}
+/* Pour ajouter de l'ombre  */
+.shadow_container {
+  width: 50%;
+  -moz-box-shadow: 0px 10px 32px 0px #cfcfcf;
+  -webkit-box-shadow: 0px 10px 32px 0px #cfcfcf;
+  -o-box-shadow: 0px 10px 32px 0px #cfcfcf;
+  box-shadow: 0px 10px 32px 0px #cfcfcf;
+  filter: progid:DXImageTransform.Microsoft.Shadow(color=#cfcfcf, Direction=180, Strength=32);
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+}
+/* Ligne de séparation pour les autres images de la même catégorie */
+hr.solid {
+  border-top: 3px solid rgba(187, 187, 187, 0.452);
+  border-radius: 5px;
 }
 
 
