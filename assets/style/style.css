@@ -509,6 +509,32 @@ hr.solid {
   border-radius: 5px;
 }
 
+/* Style de la page User */
+
+.container-user {
+  max-width: 120rem;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.info_profile {
+  display: flex;
+  margin-bottom: 4rem;
+}
+
+.logo_profile {
+  margin: 0 6rem;
+}
+.name_modify {
+  display: flex;
+}
+.modify_butt {
+  margin: -0.6rem 0 2rem 2.2rem;
+}
+.number_publica {
+  font-size: 1.5rem;
+}
+
 
 
 /* Medium screens */
@@ -520,7 +546,7 @@ hr.solid {
   }
 
   .card-wide {
-    grid-column: span 2 / auto;
-    grid-row: span 2 / auto;
+    grid-column: span 1 / auto;
+    grid-row: span 1 / auto;
   }
 }
