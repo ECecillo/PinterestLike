@@ -29,14 +29,6 @@ if (isset($_POST["logout"])) {
 <body>
   <?php include(PATH_VIEWS . 'header.php'); ?>
 
-  <?php if (isset($_SESSION["logged"])) {
-    if ($_SESSION["logged"] == "yes") {
-      echo "<h1><strong>Welcome " . $_SESSION['pseudo'] . " <br/></strong></h1>";
-      echo AffDate($_SESSION["date"]);
-    }
-  }
-  ?>
-
   <!-- Partie sur les images  -->
 
   <div class="category_paragraph">
@@ -46,21 +38,22 @@ if (isset($_POST["logout"])) {
     <div class="btn-group dropright">
       <form method="post" action="home.php">
         <select id="Image" name="Image">
-          <option value=""> select a Category </option>
+          <option value=""> All images </option>
           <?php echo fill_category($link); ?>
         </select>
         <input type="submit" name="Valider" value="OK" />
       </form>
     </div>
   </div>
-
-  <h1><strong>Galery Photo</strong></h1>
-  <!-- Affichage des jeux  -->
-  <div>
-    <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
-      <?php
-      echo fill_image($link);
-      ?>
+  <div class="container">
+    <h1><strong>Galery Photo</strong></h1>
+    <!-- Affichage des jeux  -->
+    <div>
+      <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
+        <?php
+        echo fill_image($link);
+        ?>
+      </div>
     </div>
   </div>
 </body>
