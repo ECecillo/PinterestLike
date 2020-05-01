@@ -26,10 +26,12 @@ define('PATH_CONTROLLERS','./controllers/');
 define('PATH_ASSETS','./assets/');
 define('PATH_LIB','./lib/');
 define('PATH_MODELS','./models/');
+define('PATH_ASSETS_FROM_VIEWS','../assets/');
 define('PATH_VIEWS','./views/');
 define('PATH_TEXTES','./languages/');
 
 //sous dossiers
+define('PATH_IMG_FROM_VIEWS', PATH_ASSETS_FROM_VIEWS.'img/');
 define('PATH_CSS', PATH_ASSETS.'style/');
 define('PATH_IMG', PATH_ASSETS.'img/');
 define('PATH_SCRIPT', PATH_ASSETS.'script/');
