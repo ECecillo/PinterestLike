@@ -466,4 +466,45 @@ function image_init($link){
 
   return $nbimage_init;
 }
+
+function number_image_life($link)
+{
+    $output='';
+    $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId WHERE C.nomCat='life';";
+    $result = executeQuery($link, $query);
+    $images=$result;
+    $nbImage = 0;
+    foreach ($images as $uneimage) {
+      $nbImage++;
+    }
+    $output="<div> Number Image for Life: ".$nbImage."</div>";
+  return $output;
+}
+function number_image_animals($link)
+{
+    $output='';
+    $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId WHERE C.nomCat='animals';";
+    $result = executeQuery($link, $query);
+    $images=$result;
+    $nbImage = 0;
+    foreach ($images as $uneimage) {
+      $nbImage++;
+    }
+    $output="<div> Number Image for Animals: ".$nbImage."</div>";
+  return $output;
+}
+function number_image_naturals($link)
+{
+    $output='';
+    $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId WHERE C.nomCat='Naturals';";
+    $result = executeQuery($link, $query);
+    $images=$result;
+    $nbImage = 0;
+    foreach ($images as $uneimage) {
+      $nbImage++;
+    }
+    $output="<div> Number Image for Naturals: ".$nbImage."</div>";
+  return $output;
+}
+
 ?>

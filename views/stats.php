@@ -44,6 +44,9 @@ echo"</br> </br>";
   <h1><strong>Stats</strong></h1>
   <!-- Affichage des jeux  -->
   <?php
+  echo number_image_life($link);
+  echo number_image_naturals($link);
+  echo number_image_animals($link);
   echo number_image($link);
   echo number_user($link);?>
   <h1 style="text-align:center" ><strong>More details<br/></strong></h1>
