@@ -11,7 +11,7 @@ $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
 if (isset($_POST["validate"])) {
   $nameImage = pathinfo($_FILES['Image']['name']);
   $extension = $nameImage['extension'];
-  $extension_accept = array("jpeg", "jpg", "gif");
+  $extension_accept = array("jpeg", "jpg", "gif","png");
   if (!(in_array($extension, $extension_accept))) {
     echo "File does not have expected extension. </br>";
   }
@@ -64,22 +64,45 @@ if (isset($_POST["validate"])) {
             <a class="dropdown-item" href="life.php" style="margin-left: 0px;margin-right: 0px;">Life</a>
           </div>
         </li>
-        <li>
-          <?php   if (isset($_SESSION["logged"])){
-          if ($_SESSION["logged"]=="yes") {
-           echo "<form action='home.php' method='post'>
-           <li><a><input type='submit' name='logout' value='logout' style='border:none;background:none;' /></a></li>
-         </form>";
-         }
-         else {
-           echo "<li><a href='login.php'>Login</a></li>";
-         }
-       }
-         else {
-           echo "<li><a href='login.php'>Login</a></li>";
-         }?>
+        <?php if (isset($_SESSION["logged"])) {
+             if ($_SESSION["logged"] == "yes") {
+               $dateUser = AffDate($_SESSION["date"]);
+               echo '
+           <li class="log-drop">
+             <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin: 0">
+               <span class="material-icons">
+                 face
+               </span>
+               ' . $_SESSION['pseudo'] . '
+               <span class="anim-chevron material-icons">
+               expand_more
+               </span>
+             </a>
+             <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-radius: 1rem">
+               <small class="date">
+                 <span class="material-icons">timer</span>
+                 Connected since: <br>' . $dateUser . '
+               </small>
+               <div class="dropdown-divider"></div>
+               <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin: 0">
+                 Your picture
+               </a>
+               <div class="dropdown-divider"></div>
+               <form action="../home.php" method="post" class="logout-container">
+                 <a class="dropdown-item log-butt" style="background-color: crimson;">
+                   <span class="material-icons">clear</span>
+                   <input type="submit" name="logout" value="Logout" style="border:none;background-color: crimson;"/>
+                 </a>
+               </form>
+             </div>
+           </li>';
+             } else {
+               echo "<li><a href='login.php'>Login</a></li>";
+             }
+           } else {
+             echo "<li><a href='login.php'>Login</a></li>";
+           } ?>
 
-        </li>
       </ul>
     </nav>
   </div>

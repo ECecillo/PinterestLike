@@ -11,7 +11,6 @@ if (isset($_POST["logout"])) {
 
   $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
   $check = getUser($_SESSION["pseudo"], $_SESSION["mdp"], $link);
-  echo $_SESSION["pseudo"];
 
   if (getUser($_SESSION["pseudo"], $_SESSION["mdp"], $link)== TRUE) {
     setDisconnected($_SESSION["pseudo"], $link);
@@ -37,16 +36,43 @@ if (isset($_POST["logout"])) {
     echo AffDate($_SESSION["date"]);
   }
 }
+echo"</br> </br>";
+if (isset($_POST["edit"])) {
+  $role=get_role($link);
+  if($role !='root'){
+    echo "<div>you are not root<div> </br>";
+  }
+  else{
+    $_SESSION["current_image"]=$_POST["image_now"];
+    header('Location: editImage.php ');
+  }
+}
+
+echo"</br> </br>";
+  if (isset($_POST["delete"])) {
+    $role=get_role($link);
+    if($role !='root'){
+      echo "<div>you are not root<div> </br>";
+    }
+    else{
+      unlink("../assets/img/".$_POST["image_now"]."");
+      $image_delete=$_POST['image_now'];
+      $query  ="DELETE FROM  Photo WHERE nomFich='$image_delete'";
+        executeUpdate($link, $query);
+
+    }
+
+  }
    ?>
 
   <!-- Partie sur les images  -->
 
-  <h1><strong>Galery Photo: Naturals</strong></h1>
+  <h1><strong>Galery Photo: Animals</strong></h1>
   <!-- Affichage des jeux  -->
   <div>
     <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
       <?php
-        echo fill_image_animals($link);
+        echo fill_image_animals($link,PATH_IMG_FROM_VIEWS);
       ?>
     </div>
   </div>

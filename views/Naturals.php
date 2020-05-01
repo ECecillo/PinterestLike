@@ -37,6 +37,34 @@ if (isset($_POST["logout"])) {
     echo AffDate($_SESSION["date"]);
   }
 }
+echo"</br> </br>";
+if (isset($_POST["edit"])) {
+  $role=get_role($link);
+  if($role !='root'){
+    echo "<div>you are not root<div> </br>";
+  }
+  else{
+    $_SESSION["current_image"]=$_POST["image_now"];
+    header('Location: editImage.php ');
+  }
+
+}
+
+echo"</br> </br>";
+if (isset($_POST["delete"])) {
+  $role=get_role($link);
+  if($role !='root'){
+    echo "<div>you are not root<div> </br>";
+  }
+  else{
+    unlink("../assets/img/".$_POST["image_now"]."");
+    $image_delete=$_POST['image_now'];
+    $query  ="DELETE FROM  Photo WHERE nomFich='$image_delete'";
+      executeUpdate($link, $query);
+
+  }
+
+}
    ?>
 
   <!-- Partie sur les images  -->
@@ -46,7 +74,7 @@ if (isset($_POST["logout"])) {
   <div>
     <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
       <?php
-        echo fill_image_natural($link);
+        echo fill_image_natural($link,PATH_IMG_FROM_VIEWS);
       ?>
     </div>
   </div>

@@ -36,13 +36,25 @@ if (isset($_POST["logout"])) {
   }
 }
 ?>
+<div>You have succefuly added the image </div>
 <div>
   <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
+
     <?php
       echo last_image_post($link);
     ?>
   </div>
 </div>
+<hr class="solid">
+  <div class="title_container">
+    <h3 style="color: black;">More content related to your picture</h3>
+  </div>
+  <div class="photo-grid">
+    <?php
+      echo get_image_off_cat($link);
+    ?>
+  </div>
+
 
 </body>
 
