@@ -88,7 +88,7 @@ function fill_image($link)
             <form action='home.php' method='POST'>
             <input id='Imageid' name='image_now' type='hidden' value='".$uneimage['nomFich']."'>
             <button type='submit' class='valider' name='delete'><b>Delete</b></button>
-            <button type='submit'  class='valider' name='edit' <b> modifier</b> </button>
+            <button type='submit'  class='valider' name='edit'><b> modifier</b> </button>
             </form>
             </div>
           </div>
@@ -143,7 +143,7 @@ function fill_image_natural($link,$path)
             <form action='Naturals.php' method='POST'>
             <input id='Imageid' name='image_now' type='hidden' value='".$uneimage['nomFich']."'>
             <button type='submit' class='valider' name='delete'><b>Delete</b></button>
-            <button type='submit'  class='valider' name='edit' <b> modifier</b> </button>
+            <button type='submit'  class='valider' name='edit'><b> modifier</b> </button>
             </form>
             </div>
           </div>
@@ -198,7 +198,7 @@ function fill_image_animals($link,$path)
             <form action='animals.php' method='POST'>
             <input id='Imageid' name='image_now' type='hidden' value='".$uneimage['nomFich']."'>
             <button type='submit' class='valider' name='delete'><b>Delete</b></button>
-            <button type='submit'  class='valider' name='edit' <b> modifier</b> </button>
+            <button type='submit'  class='valider' name='edit'> <b> modifier</b> </button>
             </form>
             </div>
           </div>
@@ -253,7 +253,7 @@ function fill_image_life($link,$path)
             <form action='life.php' method='POST'>
             <input id='Imageid' name='image_now' type='hidden' value='".$uneimage['nomFich']."'>
             <button type='submit' class='valider' name='delete'><b>Delete</b></button>
-            <button type='submit'  class='valider' name='edit' <b> modifier</b> </button>
+            <button type='submit'  class='valider' name='edit'> <b> modifier</b> </button>
             </form>
             </div>
           </div>

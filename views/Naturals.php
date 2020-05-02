@@ -29,25 +29,27 @@ if (isset($_POST["logout"])) {
 
 <body>
 
-  <?php include('headers_category.php'); ?>
+  <?php  if (isset($_POST["edit"])) {
+      $role=get_role($link);
+      if($role =='root'){
+        $_SESSION["current_image"]=$_POST["image_now"];
+        header('Location: editImage.php');
+      }
+      else{
+      echo "<div>you are not root<div> </br>";
+      }
+    }
+    echo "</br> </br>";
 
-  <?php  if (isset($_SESSION["logged"])) {
-   if ($_SESSION["logged"]=="yes") {
-    echo "<h1><strong>Welcome ".$_SESSION['pseudo']." <br/></strong></h1>";
-    echo AffDate($_SESSION["date"]);
-  }
-}
-echo"</br> </br>";
-if (isset($_POST["edit"])) {
-  $role=get_role($link);
-  if($role !='root'){
-    echo "<div>you are not root<div> </br>";
-  }
-  else{
-    $_SESSION["current_image"]=$_POST["image_now"];
-    header('Location: editImage.php ');
-  }
+  include('headers_category.php'); ?>
 
+  <?php
+
+  if (isset($_SESSION["logged"])){
+  if ($_SESSION["logged"]=="yes") {?>
+    <h1><strong><?php echo "Welcome".$_SESSION['pseudo']."";?> <br/></strong></h1>
+    <?php echo AffDate($_SESSION["date"]);
+  }
 }
 
 echo"</br> </br>";
