@@ -38,6 +38,7 @@ if (isset($_POST["logout"])) {
   }
 }
 
+$category = fill_category($link);
 
 ?>
 <?php include('v_head_category.php'); ?>
@@ -45,39 +46,37 @@ if (isset($_POST["logout"])) {
 <body>
 
   <?php include('headers_category.php'); ?>
-
-  <?php
-   if (isset($_SESSION["logged"])){
-   if ($_SESSION["logged"]=="yes") {
-    echo "<h1><strong>Welcome ".$_SESSION['pseudo']." <br/></strong></h1>";
-    echo AffDate($_SESSION["date"]);
-  }
-}
-  echo"</br> </br>";
-  ?>
-  <?php
-  echo "  <img src='../assets/img/".$_SESSION['current_image']."'  style='width: 250px;height: 250px;margin-right:20px; float:left; '>"
-  ?>
-  <form  action="editImage.php" style="border:2px solid #ccc; border-radius: 30px;" method="POST">
-    <div class="container">
-      <div class="fillform" style="margin: 1rem;">
-        <label for=""><b>Categorie: </b></label>
-        <select id="Image"name="editCategory" required>
-          <option value=""> select a Category </option>
-          <?php echo fill_category($link);?>
-          </select>
-        <br>
-        <br>
-        <input id='Imageid' name='editImage' type='hidden'>
-        <label for"image"><b> Description: </b></label>
-        <input type="text" placeholder="Enter Description" name="editDescription" required>
-        <br>
-      </div>
-      <div class="butt" style="text-align: center; margin: 1rem;">
-        <button type="submit" class="valider" name="edit-root"><b>Edite</b></button>
-      </div>
+  
+  <div class="container shadow_container">
+    <div class="photo-grid" style="margin: 1rem 1rem;"> <!-- class="desc_image" -->
+      <?php
+        echo "
+        <img src='" . PATH_IMG_FROM_VIEWS . $_SESSION['current_image'] . "'  class='card card-tall'>
+        <div style='display: flex;justify-content: center; font-size: 1.2rem'>
+          <form  action='editImage.php' style='border:2px solid #ccc; border-radius: 30px;' method='POST'>
+            <div class='container'>
+              <div class='fillform' style='margin: 1rem;'>
+                <label><b>Categorie: </b></label>
+                <select id='Image' name='editCategory' required>
+                  <option value=''> Select a Category </option>
+                  ". $category ."
+                </select>
+                <br>
+                <br>
+                <input id='Imageid' name='editImage' type='hidden'>
+                <label for='image'><b> Description: </b></label>
+                <input type='text' placeholder='Enter Description' name='editDescription' required>
+                <br>
+              </div>
+              <div class='butt' style='text-align: center; margin: 1rem;'>
+                <button type='submit' class='valider' name='edit-root'><b>Edit</b></button>
+              </div>
+            </div>
+          </form>
+        </div";
+      ?>
     </div>
-  </form>
+  </div>
 </body>
 
 </html>

@@ -35,6 +35,31 @@ function fill_category($link)
   return $output;
 }
 
+function RenderForm ($link, $uneimage) {
+  $output = '';
+  if (isset($_SESSION["logged"])) {
+    if ($_SESSION["logged"] == "yes") {
+      $role = get_role($link);
+      if($role == 'root') {
+        $output .=
+      "<form action='home.php' method='POST'>
+        <input id='Imageid' name='image_now' type='hidden' value='".$uneimage['nomFich']."'>
+        <button type='submit' class='valider' name='delete'><b>Delete</b></button>
+        <button type='submit'  class='valider' name='edit'><b> Edit</b> </button>
+      </form>"; 
+      }else {
+        $output .=
+      "<form action='home.php' method='POST'>
+        <input id='Imageid' name='image_now' type='hidden' value='".$uneimage['nomFich']."'>
+        <button type='submit' class='btn btn-outline-primary valider' name='edit'><b>Edit</b></button>
+      </form>"; 
+      }
+    }
+  }
+  return $output;
+}
+
+
 function fill_image($link)
 {
   $output = '';
@@ -52,6 +77,7 @@ function fill_image($link)
   $images = $result;
   $nbImage = 0;
   foreach ($images as $uneimage) {
+    $form = RenderForm($link, $uneimage);
     $output .= "
       <a class='card card-tall' style='background-image: url(" . PATH_IMG . $uneimage['nomFich'] . ");' data-toggle='modal' data-target='#" . $uneimage['nomFich'] . "'>
       </a>
@@ -85,11 +111,7 @@ function fill_image($link)
               </tbody>
             </table>
             </div>
-            <form action='home.php' method='POST'>
-            <input id='Imageid' name='image_now' type='hidden' value='".$uneimage['nomFich']."'>
-            <button type='submit' class='valider' name='delete'><b>Delete</b></button>
-            <button type='submit'  class='valider' name='edit' <b> modifier</b> </button>
-            </form>
+            ". $form ."
             </div>
           </div>
         </div>
@@ -107,6 +129,7 @@ function fill_image_natural($link, $path)
   $images = $result;
   $nbImage = 0;
   foreach ($images as $uneimage) {
+    $form = RenderForm($link, $uneimage);
     $output .= "
       <a class='card card-tall' style='background-image: url(" . $path . $uneimage['nomFich'] . ");' data-toggle='modal' data-target='#" . $uneimage['nomFich'] . "'>
       </a>
@@ -140,11 +163,7 @@ function fill_image_natural($link, $path)
               </tbody>
             </table>
             </div>
-            <form action='Naturals.php' method='POST'>
-            <input id='Imageid' name='image_now' type='hidden' value='".$uneimage['nomFich']."'>
-            <button type='submit' class='valider' name='delete'><b>Delete</b></button>
-            <button type='submit'  class='valider' name='edit' <b> modifier</b> </button>
-            </form>
+            ". $form ."
             </div>
           </div>
         </div>
@@ -162,6 +181,7 @@ function fill_image_animals($link, $path)
   $images = $result;
   $nbImage = 0;
   foreach ($images as $uneimage) {
+    $form = RenderForm($link, $uneimage);
     $output .= "
       <a class='card card-tall' style='background-image: url(" . $path . $uneimage['nomFich'] . ");' data-toggle='modal' data-target='#" . $uneimage['nomFich'] . "'>
       </a>
@@ -195,11 +215,7 @@ function fill_image_animals($link, $path)
               </tbody>
             </table>
             </div>
-            <form action='animals.php' method='POST'>
-            <input id='Imageid' name='image_now' type='hidden' value='".$uneimage['nomFich']."'>
-            <button type='submit' class='valider' name='delete'><b>Delete</b></button>
-            <button type='submit'  class='valider' name='edit' <b> modifier</b> </button>
-            </form>
+            ". $form ."
             </div>
           </div>
         </div>
@@ -217,6 +233,7 @@ function fill_image_life($link, $path)
   $images = $result;
   $nbImage = 0;
   foreach ($images as $uneimage) {
+    $form = RenderForm($link, $uneimage);
     $output .= "
       <a class='card card-tall' style='background-image: url(" . $path . $uneimage['nomFich'] . ");' data-toggle='modal' data-target='#" . $uneimage['nomFich'] . "'>
       </a>
@@ -250,11 +267,7 @@ function fill_image_life($link, $path)
               </tbody>
             </table>
             </div>
-            <form action='life.php' method='POST'>
-            <input id='Imageid' name='image_now' type='hidden' value='".$uneimage['nomFich']."'>
-            <button type='submit' class='valider' name='delete'><b>Delete</b></button>
-            <button type='submit'  class='valider' name='edit' <b> modifier</b> </button>
-            </form>
+            ". $form ."
             </div>
           </div>
         </div>
@@ -351,6 +364,7 @@ function get_image_user($link, $pseudo)
   $images = $result;
   $nbImage = 0;
   foreach ($images as $uneimage) {
+    $form = RenderForm($link, $uneimage);
     $output .= "
       <a class='card card-wide' style='background-image: url(". PATH_IMG_FROM_VIEWS . $uneimage['nomFich'] . ");' data-toggle='modal' data-target='#" . $uneimage['nomFich'] . "'>
       </a>
@@ -384,6 +398,7 @@ function get_image_user($link, $pseudo)
               </tbody>
             </table>
             </div>
+            ". $form ."
             </div>
           </div>
         </div>

@@ -34,7 +34,7 @@
             if($role =='root'){
               echo "
               <li>
-                <a href='views/stats.php' style='margin: 0 3rem;'>Stats</a>
+                <a href='stats.php' style='margin: 0 3rem;'>Stats</a>
               </li>";
             }
             $dateUser = AffDate($_SESSION["date"]);
