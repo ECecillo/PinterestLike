@@ -12,7 +12,7 @@ $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
 if (isset($_POST["validate"])) {
   $nameImage = pathinfo($_FILES['Image']['name']);
   $extension = $nameImage['extension'];
-  $extension_accept = array("png", "jpg", "gif");
+  $extension_accept = array("jpeg", "jpg", "gif","png");
   if (!(in_array($extension, $extension_accept))) {
     echo "File does not have expected extension. </br>";
   }

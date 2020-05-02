@@ -126,6 +126,7 @@ if (isset($_POST["valider"])) {
     <div style="text-align: center; margin: 1rem;"> <a href="./inscription.php">Première connexion ?</a> </div>
 
   </form>
+  
 </body>
 
 </html>

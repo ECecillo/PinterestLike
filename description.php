@@ -32,7 +32,7 @@ if (isset($_POST["logout"])) {
 
   <div class="container shadow_container">
     <div class="title_container">
-      <h1 style="padding-top: 1rem;">Your Picture</h1>
+      <h1 style="padding-top: 1rem;">You have successfully add this Picture !</h1>
     </div>
     <div class="photo-grid" style="margin: 1rem 1rem;"> <!-- class="desc_image" -->
       <?php
