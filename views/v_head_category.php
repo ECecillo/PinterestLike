@@ -17,7 +17,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
   <!-- Logo -->
-  <link rel="icon" href="assets/img/pinter.png" type="image/icon type">
+  <link rel="icon" href="../assets/img/pinter.png" type="image/icon type">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="<?= PATH_CSS_CAT ?>materialize.css">
   <!-- Mon style -->

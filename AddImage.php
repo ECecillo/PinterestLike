@@ -12,7 +12,7 @@ $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
 if (isset($_POST["validate"])) {
   $nameImage = pathinfo($_FILES['Image']['name']);
   $extension = $nameImage['extension'];
-  $extension_accept = array("jpeg", "jpg", "gif","png");
+  $extension_accept = array("jpeg", "jpg", "gif", "png");
   if (!(in_array($extension, $extension_accept))) {
     echo "File does not have expected extension. </br>";
   }
@@ -25,7 +25,7 @@ if (isset($_POST["validate"])) {
     $pseud = $_SESSION["pseudo"];
     $cate = $_POST["Category"];
     $constName = $description . '_' . $pseud . '.' . $extension;
-    
+
     $destination_directory = dirname(__FILE__) . "/assets/img/";
     move_uploaded_file($_FILES["Image"]["tmp_name"], $destination_directory . $constName);
     $req = "INSERT INTO Photo(nomFich,`description`,catId) VALUES ('$constName', '$description',  '$cate')";
@@ -63,7 +63,7 @@ if (isset($_POST["validate"])) {
         <br>
       </div>
       <div class="butt" style="text-align: center; margin: 1rem;">
-        <button type="submit" class="valider" name="validate"><b>Validate</b></button>
+        <button type='submit' class='btn btn-outline-success btn-lg valider' name='validate'><b>Validate</b></button>
       </div>
     </div>
   </form>

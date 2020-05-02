@@ -46,7 +46,7 @@ $category = fill_category($link);
 <body>
 
   <?php include('headers_category.php'); ?>
-  
+
   <div class="container shadow_container">
     <div class="photo-grid" style="margin: 1rem 1rem;"> <!-- class="desc_image" -->
       <?php
@@ -69,7 +69,7 @@ $category = fill_category($link);
                 <br>
               </div>
               <div class='butt' style='text-align: center; margin: 1rem;'>
-                <button type='submit' class='valider' name='edit-root'><b>Edit</b></button>
+                <button type='submit' class='btn btn-outline-success btn-lg valider' name='edit-root'><b>Edit</b></button>
               </div>
             </div>
           </form>
