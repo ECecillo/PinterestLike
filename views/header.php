@@ -35,6 +35,7 @@
             if ($role == 'root') {
               echo "<li><a href='views/stats.php'>Stats</a></li>";
             }
+            
             echo '
             <li class="log-drop">
               <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin: 0">
