@@ -30,23 +30,24 @@ if (isset($_POST["logout"])) {
 <body>
   <?php include(PATH_VIEWS . 'header.php'); ?>
 
-  <?php if (isset($_SESSION["logged"])){
-  if ($_SESSION["logged"]=="yes") {
-    echo "<h1><strong>Welcome ".$_SESSION['pseudo']." <br/></strong></h1>";
-    echo AffDate($_SESSION["date"]);
-  }
-}
-echo"</br> </br>";
-if (isset($_POST["edit"])) {
-  $role=get_role($link);
-  if($role !='root'){
+  <?php
+  if (isset($_POST["edit"])) {
+    $role=get_role($link);
+    if($role =='root'){
+      $_SESSION["current_image"]=$_POST["image_now"];
+      header('Location: views/editImage.php');
+    }
+    else{
     echo "<div>you are not root<div> </br>";
+    }
   }
-  else{
-    $_SESSION["current_image"]=$_POST["image_now"];
-    header('Location: ./views/editImage.php ');
-  }
+  echo "</br> </br>";
 
+  if (isset($_SESSION["logged"])){
+  if ($_SESSION["logged"]=="yes") {?>
+    <h1><strong><?php echo "Welcome ".$_SESSION['pseudo'];?> <br/></strong></h1>
+    <?php echo AffDate($_SESSION["date"]);
+  }
 }
 
 echo"</br> </br>";
@@ -64,7 +65,7 @@ if (isset($_POST["delete"])) {
   }
 
 }
-   ?>
+?>
 
   <!-- Partie sur les images  -->
 

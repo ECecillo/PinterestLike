@@ -28,7 +28,19 @@ if (isset($_POST["logout"])) {
 
 <body>
 
-  <?php include('headers_category.php'); ?>
+  <?php
+  if (isset($_POST["edit"])) {
+     $role=get_role($link);
+     if($role =='root'){
+       $_SESSION["current_image"]=$_POST["image_now"];
+       header('Location: editImage.php');
+     }
+     else{
+     echo "<div>you are not root<div> </br>";
+     }
+   }
+   echo "</br> </br>";
+   include('headers_category.php'); ?>
 
   <?php  if (isset($_SESSION["logged"])){
     if ($_SESSION["logged"]=="yes") {
@@ -36,18 +48,6 @@ if (isset($_POST["logout"])) {
     echo AffDate($_SESSION["date"]);
   }
 }
-echo"</br> </br>";
-if (isset($_POST["edit"])) {
-  $role=get_role($link);
-  if($role !='root'){
-    echo "<div>you are not root<div> </br>";
-  }
-  else{
-    $_SESSION["current_image"]=$_POST["image_now"];
-    header('Location: editImage.php ');
-  }
-}
-
 echo"</br> </br>";
   if (isset($_POST["delete"])) {
     $role=get_role($link);
