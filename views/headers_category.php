@@ -30,6 +30,9 @@
         </li>
         <?php if (isset($_SESSION["logged"])) {
           if ($_SESSION["logged"] == "yes") {
+            if($role =='root'){
+              echo "<li><a href='stats.php'>Stats</a></li>";
+            }
             $dateUser = AffDate($_SESSION["date"]);
             echo '
             <li class="log-drop">
