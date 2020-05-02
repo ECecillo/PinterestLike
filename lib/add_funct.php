@@ -298,11 +298,11 @@ function last_image_post($link)
 }
 function get_role($link){
   $output='';
-  $query = 'SELECT role from utilisateur WHERE utilisateur.pseudo="'.$_SESSION['pseudo'].'"';
+  $query = 'SELECT `role` from utilisateur WHERE utilisateur.`pseudo` = "'. $_SESSION['pseudo'] .'"';
   $result = executeQuery($link, $query);
   $user=$result;
   foreach ($user as $users) {
-    $output=$users['role'];
+    $output = $users['role'];
   }
   return $output;
 }
@@ -401,7 +401,11 @@ function number_image($link){
   foreach ($images as $uneimage) {
     $nbImage++;
   }
-  $output="<div> Number image: ".$nbImage." images </div>";
+  $output=
+  "<tr>
+      <th>Number of Pictures</th>
+      <td>".$nbImage." pictures</td>
+    </tr>";
   return $output;
 
 }
@@ -415,7 +419,11 @@ function number_user($link){
   foreach ($user as $users) {
     $nbuser++;
   }
-  $output="<div> Number users: ".$nbuser." users</div> ";
+  $output= 
+  "<tr>
+    <th>Number of users</th>
+    <td>".$nbuser." users</td>
+  </tr>";
   return $output;
 
 }
@@ -474,7 +482,11 @@ function number_image_life($link)
     foreach ($images as $uneimage) {
       $nbImage++;
     }
-    $output="<div> Number Image for Life: ".$nbImage."</div>";
+    $output=
+    "<tr>
+      <th>Pictures for Life</th>
+      <td>".$nbImage." picutures</td>
+    </tr>";
   return $output;
 }
 function number_image_animals($link)
@@ -487,7 +499,11 @@ function number_image_animals($link)
     foreach ($images as $uneimage) {
       $nbImage++;
     }
-    $output="<div> Number Image for Animals: ".$nbImage."</div>";
+    $output=
+    "<tr>
+      <th>Pictures for Animals</th>
+      <td>".$nbImage." pictures</td>
+    </tr>";
   return $output;
 }
 function number_image_naturals($link)
@@ -500,6 +516,10 @@ function number_image_naturals($link)
     foreach ($images as $uneimage) {
       $nbImage++;
     }
-    $output="<div> Number Image for Naturals: ".$nbImage."</div>";
+    $output=
+    "<tr>
+      <th>Pictures for Natural</th>
+      <td>".$nbImage." pictures</td>
+    </tr>";
   return $output;
 }

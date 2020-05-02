@@ -16,7 +16,7 @@
           }
         }?>
         <li style="margin-top: -0.5625rem;">
-          <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 0rem;">
             Category 
             <span class="material-icons">
               expand_more
@@ -30,8 +30,12 @@
         </li>
         <?php if (isset($_SESSION["logged"])) {
           if ($_SESSION["logged"] == "yes") {
+            $role = get_role($link);
             if($role =='root'){
-              echo "<li><a href='stats.php'>Stats</a></li>";
+              echo "
+              <li>
+                <a href='views/stats.php' style='margin: 0 3rem;'>Stats</a>
+              </li>";
             }
             $dateUser = AffDate($_SESSION["date"]);
             echo '

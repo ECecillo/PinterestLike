@@ -16,7 +16,7 @@
           }
         } ?>
         <li style="margin-top: -0.5625rem;">
-          <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 2rem;">
+          <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 0rem;">
             Category
             <span class="material-icons">
               expand_more
@@ -33,9 +33,11 @@
             $dateUser = AffDate($_SESSION["date"]);
             $role = get_role($link);
             if ($role == 'root') {
-              echo "<li><a href='views/stats.php'>Stats</a></li>";
+              echo "
+              <li>
+                <a href='views/stats.php' style='margin: 0 3rem;'>Stats</a>
+              </li>";
             }
-            
             echo '
             <li class="log-drop">
               <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin: 0">
