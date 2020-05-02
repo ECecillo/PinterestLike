@@ -424,14 +424,15 @@ function number_user($link){
 }
 
 function number_image_user($link,$user){
-  $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId WHERE P.nomFich LIKE '%$user%';";
+  $output='';
+  $query = "SELECT COUNT(*) AS num_user_img from Photo P join Categorie C on C.catId=P.catId WHERE P.nomFich LIKE '%$user%';";
   $result = executeQuery($link, $query);
   $images = $result;
   $nbImage = 0;
   foreach ($images as $uneimage) {
-    $nbImage++;
+    $output.="".$uneimage['num_user_img']."";
   }
-  return $nbImage;
+  return $output;
 }
 
 
@@ -455,55 +456,52 @@ function all_user($link){
 }
 
 function image_init($link){
-  $output='/_/';
-  $query = "SELECT * from Photo P WHERE P.nomFich   NOT LIKE '%\_%';";
+  $output='';
+  $query = "SELECT COUNT(*) AS number_machine from Photo P WHERE P.nomFich   NOT LIKE '%\_%';";
   $result = executeQuery($link, $query);
   $user= $result;
   $nbimage_init = 0;
   foreach ($user as $users) {
-    $nbimage_init++;
+      $output.="".$users['number_machine']."";
   }
 
-  return $nbimage_init;
+  return $output;
 }
 
 function number_image_life($link)
 {
     $output='';
-    $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId WHERE C.nomCat='life';";
+    $query = "SELECT COUNT(*) AS number_life from Photo P join Categorie C on C.catId=P.catId WHERE C.nomCat='life';";
     $result = executeQuery($link, $query);
     $images=$result;
     $nbImage = 0;
     foreach ($images as $uneimage) {
-      $nbImage++;
+    $output.="<div> Number Image for Life: ".$uneimage['number_life']."</div>";
     }
-    $output="<div> Number Image for Life: ".$nbImage."</div>";
   return $output;
 }
 function number_image_animals($link)
 {
     $output='';
-    $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId WHERE C.nomCat='animals';";
+    $query = "SELECT COUNT(*) AS number_animals from Photo P join Categorie C on C.catId=P.catId WHERE C.nomCat='animals';";
     $result = executeQuery($link, $query);
     $images=$result;
     $nbImage = 0;
     foreach ($images as $uneimage) {
-      $nbImage++;
+    $output.="<div> Number Image for Animals: ".$uneimage['number_animals']."</div>";
     }
-    $output="<div> Number Image for Animals: ".$nbImage."</div>";
   return $output;
 }
 function number_image_naturals($link)
 {
     $output='';
-    $query = "SELECT C.nomCat,P.nomFich,P.catId,P.description from Photo P join Categorie C on C.catId=P.catId WHERE C.nomCat='Naturals';";
+    $query = "SELECT COUNT(*) AS number_naturals from Photo P join Categorie C on C.catId=P.catId WHERE C.nomCat='Naturals';";
     $result = executeQuery($link, $query);
     $images=$result;
     $nbImage = 0;
     foreach ($images as $uneimage) {
-      $nbImage++;
+      $output.="<div> Number Image for Naturals: ".$uneimage['number_naturals']."</div>";
     }
-    $output="<div> Number Image for Naturals: ".$nbImage."</div>";
   return $output;
 }
 
