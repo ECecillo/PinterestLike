@@ -53,7 +53,7 @@ if (isset($_POST["valider"])) {
             }
           } ?>
           <li style="margin-top: -0.5625rem;">
-            <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 2rem;">
+            <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 0rem;">
               Category
               <span class="material-icons">
                 expand_more
@@ -126,7 +126,7 @@ if (isset($_POST["valider"])) {
     <div style="text-align: center; margin: 1rem;"> <a href="./inscription.php">Première connexion ?</a> </div>
 
   </form>
-  
+
 </body>
 
 </html>

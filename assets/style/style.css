@@ -535,6 +535,10 @@ hr.solid {
   font-size: 1.5rem;
 }
 
+table,tbody,td,tr,th {
+  border:solid 1px black;text-align:center;
+}
+
 
 
 /* Medium screens */

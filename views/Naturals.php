@@ -22,7 +22,7 @@ if (isset($_POST["logout"])) {
     exit();
   }
 }
-echo"</br> </br>";
+
 if (isset($_POST["edit"])) {
   $role=get_role($link);
   if($role !='root'){
@@ -35,7 +35,6 @@ if (isset($_POST["edit"])) {
 
 }
 
-echo"</br> </br>";
 if (isset($_POST["delete"])) {
   $role=get_role($link);
   if($role !='root'){

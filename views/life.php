@@ -40,7 +40,7 @@ if (isset($_POST["logout"])) {
       header('Location: editImage.php ');
     }
   }
-  echo "</br> </br>";
+  
   if (isset($_POST["delete"])) {
     $role = get_role($link);
     if ($role != 'root') {
