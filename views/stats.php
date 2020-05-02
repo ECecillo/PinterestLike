@@ -32,37 +32,41 @@ if (isset($_POST["logout"])) {
 
   <!-- Partie sur les images  -->
 
-  <h1><strong>Stats</strong></h1>
+  <h1 style="text-align: center;"><strong>Stats</strong></h1>
   <!-- Affichage des jeux  -->
-  <div>
-    <table>
-      <tbody>
-        <?php
-        echo number_image_life($link);
-        echo number_image_naturals($link);
-        echo number_image_animals($link);
-        echo number_image($link);
-        echo number_user($link);
-        ?>
-      </tbody>
-    </table>
+  <div class="container shadow_container" style="margin-bottom: 2rem;">
+    <div style='display: flex;justify-content: center; font-size: 1.2rem'>
+      <table class="table">
+        <tbody>
+          <?php
+          echo number_image_life($link);
+          echo number_image_naturals($link);
+          echo number_image_animals($link);
+          echo number_image($link);
+          echo number_user($link);
+          ?>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <h1 style="text-align:center"><strong>More details<br /></strong></h1>
-  <div style='display: flex;justify-content: center;'>
-    <table>
-      <tr>
-        <td style='border:solid 1px black;text-align:center;'> User</td>
-        <td style='border:solid 1px black;text-align:center;'>number Photo </td>
-      </tr>
-      <?php
-      echo all_user($link);
-      $init = image_init($link);
-      ?>
-      <tr>
-        <td style='border:solid 1px black;text-align:center;'> Machine</td>
-        <td style='border:solid 1px black;text-align:center;'><?php echo $init; ?> </td>
-      </tr>
-    </table>
+  <div class="container shadow_container" style="padding-top: 2rem; padding-bottom: 2rem;">
+    <h1 style="text-align:center"><strong>More details<br /></strong></h1>
+    <div style='display: flex;justify-content: center;'>
+      <table class="table">
+        <tr style="border:solid 0.5px black;text-align:center;">
+          <td style='border:solid 0.5px black;text-align:center;'> User</td>
+          <td style='border:solid 0.5px black;text-align:center;'>number Photo </td>
+        </tr>
+        <?php
+        echo all_user($link);
+        $init = image_init($link);
+        ?>
+        <tr>
+          <td style='border:solid 0.5px black;text-align:center;'> Machine</td>
+          <td style='border:solid 0.5px black;text-align:center;'><?php echo $init; ?> </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </body>
 

@@ -14,8 +14,8 @@ if (isset($_POST["edit"])) {
     $_SESSION["current_image"]=$_POST["image_now"];
     header('Location: views/editImage.php');
   }
-  else{
-  echo "<div>you are not root<div> </br>";
+  else {
+    header('Location: views/User_profile.php');
   }
 }
 if (isset($_POST["delete"])) {

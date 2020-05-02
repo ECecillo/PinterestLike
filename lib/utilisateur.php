@@ -91,8 +91,7 @@ function setDisconnected($pseudo, $link)
 	return $resultat;
 }
 
-/*Cette fonction renvoie la couleur associée à un utilisateur pour son affichage dans le fil de discussion*/
-function getUserColor($pseudo, $link)
-{
-	// Optionnel, à compléter
-}
+function newPass($link, $psswd, $pseudo) {
+	$query = "UPDATE `utilisateur` SET `mdp` = '$psswd' WHERE `utilisateur`.`pseudo` = '$pseudo'";
+	executeQuery($link, $query);
+  }

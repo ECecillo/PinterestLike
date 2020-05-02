@@ -10,6 +10,18 @@ $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
 
 $pseudo = $_SESSION['pseudo'];
 
+
+if (isset($_POST['valider'])) {
+  $hashMdp = md5($_POST["mdp"]);
+  $hashConfirmMdp = md5($_POST["mdp-repeat"]);
+  if ($hashMdp == $hashConfirmMdp) {
+    newPass($link, $hashMdp, $pseudo);
+    $_SESSION['mdp'] = $hashMdp;
+    header('Location: User_profile.php');
+  }
+}
+
+
 if (isset($_POST["logout"])) {
   $pseudo = $_SESSION['pseudo'];
   $mdp = $_SESSION['mdp'];
@@ -21,6 +33,19 @@ if (isset($_POST["logout"])) {
     header('Location: home.php');
     exit();
   }
+}
+
+if (isset($_POST["edit"])) {
+  $_SESSION["current_image"] = $_POST["image_now"];
+  header('Location: editImage.php');
+}
+
+if (isset($_POST["delete"])) {
+
+  unlink("assets/img/" . $_POST["image_now"] . "");
+  $image_delete = $_POST['image_now'];
+  $query  = "DELETE FROM  Photo WHERE nomFich='$image_delete'";
+  executeUpdate($link, $query);
 }
 
 
@@ -72,16 +97,14 @@ if (isset($_POST["logout"])) {
           </button>
         </div>
         <div class="modal-body">
-          <form>
-            <label for="inputPassword6">Password</label>
-            <input type="password" id="inputPassword6" class="form-control mx-sm-3" aria-describedby="passwordHelpInline">
-            <input type="file" class="custom-file-input" id="customFile">
-            <label class="custom-file-label" for="customFile">Choose file</label>
+          <form action="User_profile.php" method="POST">
+            <label for="mdp">Your new Password</label>
+            <input type="password" name="mdp" id="inputPassword6" class="form-control mb-2 mr-sm-2" aria-describedby="passwordHelpInline" placeholder="Your new Psswd" required>
+            <br>
+            <label for="psw-repeat">Confirm new Password</label>
+            <input type="password" name="mdp-repeat" id="confirmPassword6" class="form-control mb-2 mr-sm-2" aria-describedby="passwordHelpInline" placeholder="Confirm new Password" required>
+            <button type='submit' class='btn btn-outline-success valider' name='valider'><b>Modifier</b></button>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
