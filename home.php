@@ -8,6 +8,28 @@ require_once(PATH_LIB . 'add_funct.php');
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
 
+if (isset($_POST["edit"])) {
+  $role=get_role($link);
+  if($role =='root'){
+    $_SESSION["current_image"]=$_POST["image_now"];
+    header('Location: views/editImage.php');
+  }
+  else{
+  echo "<div>you are not root<div> </br>";
+  }
+}
+if (isset($_POST["delete"])) {
+  $role = get_role($link);
+  if ($role != 'root') {
+    echo "<div>You are not root<div> </br>";
+  } else {
+    unlink("assets/img/" . $_POST["image_now"] . "");
+    $image_delete = $_POST['image_now'];
+    $query  = "DELETE FROM  Photo WHERE nomFich='$image_delete'";
+    executeUpdate($link, $query);
+  }
+}
+
 if (isset($_POST["logout"])) {
   $pseudo = $_SESSION['pseudo'];
   $mdp = $_SESSION['mdp'];
@@ -28,29 +50,6 @@ if (isset($_POST["logout"])) {
 
 <body>
   <?php include(PATH_VIEWS . 'header.php'); ?>
-
-  <?php
-  if (isset($_POST["edit"])) {
-    $role = get_role($link);
-    if ($role != 'root') {
-      echo "<div>you are not root<div> </br>";
-    } else {
-      $_SESSION["current_image"] = $_POST["image_now"];
-      header('Location: /views/editImage.php ');
-    }
-  }
-  if (isset($_POST["delete"])) {
-    $role = get_role($link);
-    if ($role != 'root') {
-      echo "<div>You are not root<div> </br>";
-    } else {
-      unlink("assets/img/" . $_POST["image_now"] . "");
-      $image_delete = $_POST['image_now'];
-      $query  = "DELETE FROM  Photo WHERE nomFich='$image_delete'";
-      executeUpdate($link, $query);
-    }
-  }
-  ?>
   <!-- Partie sur les images  -->
 
   <div class="category_paragraph">
