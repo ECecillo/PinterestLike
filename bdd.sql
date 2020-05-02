@@ -81,3 +81,6 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 
 INSERT INTO utilisateur(pseudo,mdp,role,etat)
     VALUES ('root','63a9f0ea7bb98050796b649e85481845','root','disconnected');
+
+INSERT INTO utilisateur(pseudo,mdp,role,etat)
+    VALUES ('zozolito','6edb4f777954ca01cba741d44ca5f6f1','user','disconnected');
