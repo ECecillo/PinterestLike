@@ -1,3 +1,4 @@
+<!-- Pour ajouter les icones  -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 <header>
@@ -16,8 +17,8 @@
             <span class="material-icons">
               expand_more
             </span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          </a>   <!-- Le contenu du dropdown -->
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
             <a class="dropdown-item" href="<?= PATH_VIEWS ?>Naturals.php" style="margin-left: 0px;margin-right: 0px;">Naturals</a>
             <a class="dropdown-item" href="<?= PATH_VIEWS ?>animals.php" style="margin-left: 0px;margin-right: 0px;">Animals</a>
             <a class="dropdown-item" href="<?= PATH_VIEWS ?>life.php>" style="margin-left: 0px;margin-right: 0px;">Life</a>

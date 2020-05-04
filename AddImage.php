@@ -1,24 +1,24 @@
 <?php
 session_start();
-require_once('./config/configuration.php');
-require_once(PATH_LIB . 'bd.php');
-require_once(PATH_LIB . 'utilisateur.php');
-require_once(PATH_LIB . 'discussion.php');
-require_once(PATH_LIB . 'add_funct.php');
+require_once('./config/configuration.php'); // Fichier où l'on a toute les constantes
+require_once(PATH_LIB . 'bd.php'); // Fichier qui gère l'execution des requetes, l'envoie ..
+require_once(PATH_LIB . 'utilisateur.php'); // Fichier où l'on a mis les fonctions liés à la table utilisateur
+require_once(PATH_LIB . 'discussion.php'); // 
+require_once(PATH_LIB . 'add_funct.php'); // Toute les fonctions que l'on a déclaré jusqu'à maintenant
 
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
 
-if (isset($_POST["validate"])) {
-  $nameImage = pathinfo($_FILES['Image']['name']);
-  $extension = $nameImage['extension'];
-  $extension_accept = array("jpeg", "jpg", "gif", "png");
+if (isset($_POST["validate"])) { 
+  $nameImage = pathinfo($_FILES['Image']['name']); // Donne le nom de l'image quand on fait parcourir
+  $extension = $nameImage['extension']; // Retourne son format
+  $extension_accept = array("jpeg", "jpg", "gif", "png"); // On vérifie que le format respect les consignes
   if (!(in_array($extension, $extension_accept))) {
     echo "File does not have expected extension. </br>";
   }
-  $size_max = 104860;
-  $size_Image = filesize($_FILES['Image']['tmp_name']);
-  if ($size_Image > $size_max) {
+  $size_max = 104860; // Taille max du fichier
+  $size_Image = filesize($_FILES['Image']['tmp_name']); //Récupère la taille du fichier fournie
+  if ($size_Image > $size_max) { 
     echo "You have exceeded the allowed file size. </br>";
   } else {
     $description = $_POST["Description"];
@@ -26,9 +26,9 @@ if (isset($_POST["validate"])) {
     $cate = $_POST["Category"];
     $constName = $description . '_' . $pseud . '.' . $extension;
 
-    $destination_directory = dirname(__FILE__) . "/assets/img/";
-    move_uploaded_file($_FILES["Image"]["tmp_name"], $destination_directory . $constName);
-    $req = "INSERT INTO Photo(nomFich,`description`,catId) VALUES ('$constName', '$description',  '$cate')";
+    $destination_directory = dirname(__FILE__) . "/assets/img/"; // On met dans la variable le chemin vers le dossier où l'on les images
+    move_uploaded_file($_FILES["Image"]["tmp_name"], $destination_directory . $constName); // fonction qui va déplacer la nouvelle image vers ce dossier
+    $req = "INSERT INTO Photo(nomFich,`description`,catId) VALUES ('$constName', '$description',  '$cate')"; // La requête sql qui ajoute l'image dans la bdd
     executeUpdate($link, $req);
     header('Location: description.php');
   }

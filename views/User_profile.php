@@ -11,13 +11,13 @@ $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
 $pseudo = $_SESSION['pseudo'];
 
 
-if (isset($_POST['valider'])) {
+if (isset($_POST['valider'])) { // récupère les infos entrées dans le formulaire
   $hashMdp = md5($_POST["mdp"]);
   $hashConfirmMdp = md5($_POST["mdp-repeat"]);
   if ($hashMdp == $hashConfirmMdp) {
-    newPass($link, $hashMdp, $pseudo);
+    newPass($link, $hashMdp, $pseudo); // Fonction qui modifie le mot de passe de l'utilisateur dans la base de données en le cryptant, cf lib/addfucntion.php
     $_SESSION['mdp'] = $hashMdp;
-    header('Location: User_profile.php');
+    header('Location: User_profile.php'); // On recharge la page
   }
 }
 
@@ -35,12 +35,12 @@ if (isset($_POST["logout"])) {
   }
 }
 
-if (isset($_POST["edit"])) {
+if (isset($_POST["edit"])) { // L'utilisateur peut modifier les images où celles qui sont affichés sur sa page n'appartiennent qu'à lui donc pas besoin de checker son role
   $_SESSION["current_image"] = $_POST["image_now"];
   header('Location: editImage.php');
 }
 
-if (isset($_POST["delete"])) {
+if (isset($_POST["delete"])) { // Pas non plus besoin de checker son role puisque ce sont ces images
 
   unlink("assets/img/" . $_POST["image_now"] . "");
   $image_delete = $_POST['image_now'];
@@ -63,7 +63,7 @@ if (isset($_POST["delete"])) {
         <div class="name_modify">
           <div class="name">
             <h3 style="font-weight: bold;">
-              <? echo $_SESSION['pseudo']; ?>
+              <? echo $_SESSION['pseudo']; ?> <!-- nom de l'utilisateur connecté -->
             </h3>
           </div>
           <div class="modify_butt">
@@ -81,7 +81,7 @@ if (isset($_POST["delete"])) {
     <hr class="solid">
     <div class="photo-grid">
       <!-- le php qui affiche les images de l'user -->
-      <? echo get_image_user($link, $pseudo) ?>
+      <? echo get_image_user($link, $pseudo) ?>  <!-- On récupère les images de l'utilisateur et on les affiches, cf lib/addfunction.php -->
     </div>
   </div>
 
