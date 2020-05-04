@@ -9,23 +9,23 @@ require_once('.' . PATH_LIB . 'add_funct.php');
 $stateMsg = "";
 
 if (isset($_POST["valider"])) {
-  $pseudo = $_POST["pseudo"];
-  $hashMdp = md5($_POST["mdp"]);
-  $hashConfirmMdp = md5($_POST["mdp-repeat"]);
+  $pseudo = $_POST["pseudo"]; // On sauvegarde ce qui a été rentré dans le formulaire pour le pseudo
+  $hashMdp = md5($_POST["mdp"]); // On va crypter le mot de passe 
+  $hashConfirmMdp = md5($_POST["mdp-repeat"]); // Pour l'évaluation si les deux mdp sont les mêmes
 
-  $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
-  $available = checkAvailability($pseudo, $link);
+  $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName); // lien bdd
+  $available = checkAvailability($pseudo, $link); // Regarder si l'utilisateur n'existe pas dans la base de donéée
 
-  if ($hashMdp == $hashConfirmMdp) {
+  if ($hashMdp == $hashConfirmMdp) { // On check si le mdp est le même que celui de confirmation pour que l'utilisateur soit sur de sa saisie
     if ($available) {
-      register($pseudo, $hashMdp, $link);
-      $_SESSION["pseudo"] = $pseudo;
+      register($pseudo, $hashMdp, $link); // Fonction qui enregistre l'utilisateur dans la bdd cf lib/utilisateur.php
+      $_SESSION["pseudo"] = $pseudo; // Met en session le pseudo du form
       $_SESSION["mdp"] = $hashMdp;
-      date_default_timezone_set('Europe/Paris');
-      $_SESSION["date"] = date('d-m-Y H:i:s');
-      setConnected($pseudo, $link);
+      date_default_timezone_set('Europe/Paris'); // récupère l'heure en fonction de notre heure locale française
+      $_SESSION["date"] = date('d-m-Y H:i:s'); // Créer en session la date pour l'affichage sur home.php
+      setConnected($pseudo, $link); // Fonction qui rend connecté dans la base de donnée l'utilisateur cf lib/utilisateur.php
       $_SESSION["logged"] = "yes";
-      header('Location: ../home.php');
+      header('Location: ../home.php'); // redirige vers la page d'accueil
       exit();
     } else {
       echo "Le pseudo demandé est déjà utilié";
@@ -34,12 +34,12 @@ if (isset($_POST["valider"])) {
     echo "Les mots de passe ne correspondent pas, veuillez réessayer";
   }
 }
-// echo isset($_POST["valider"]);
 ?>
 
 <?php include('v_head_category.php'); ?>
 
-<body>
+<body> 
+  <!-- Pour les icones  -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
   <header>
@@ -72,7 +72,7 @@ if (isset($_POST["valider"])) {
           </li>
           <?php if (isset($_SESSION["logged"])) {
             if ($_SESSION["logged"] == "yes") {
-              $dateUser = AffDate($_SESSION["date"]);
+              $dateUser = AffDate($_SESSION["date"]); // On récupère la date de l'utilisateur et on l'affiche même si dans notre cas elle sera unset
               echo '
           <li class="log-drop">
             <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin: 0">

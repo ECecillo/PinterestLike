@@ -14,12 +14,12 @@ if (isset($_POST["valider"])) {
   $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
   $check = getUser($pseudo, $hashMdp, $link);
 
-  if (getUser($pseudo, $hashMdp, $link) == TRUE) {
-    $_SESSION["pseudo"] = $pseudo;
-    $_SESSION["mdp"] = $hashMdp;
-    date_default_timezone_set('Europe/Paris');
-    $_SESSION["date"] = date('d-m-Y H:i:s');
-    setConnected($pseudo, $link);
+  if ($check) {
+    $_SESSION["pseudo"] = $pseudo; // met en session le pseudo 
+    $_SESSION["mdp"] = $hashMdp; // le mot de passe
+    date_default_timezone_set('Europe/Paris'); // on récupère l'heure locale française
+    $_SESSION["date"] = date('d-m-Y H:i:s'); // On la formate
+    setConnected($pseudo, $link); // On met l'utilisateur connecté avec la fonction voir lib/utilisateur.php
     $_SESSION["logged"] = "yes";
     header('Location: ../home.php');
     exit();

@@ -13,11 +13,9 @@ if (isset($_POST["logout"])) {
   $check = getUser($_SESSION["pseudo"], $_SESSION["mdp"], $link);
   echo $_SESSION["pseudo"];
 
-  if (getUser($_SESSION["pseudo"], $_SESSION["mdp"], $link) == TRUE) {
+  if ($check) {
     setDisconnected($_SESSION["pseudo"], $link);
-    $_SESSION["pseudo"] = '';
-    $_SESSION["mdp"] = '';
-    $_SESSION["logged"] = "no";
+    session_unset();
     header('Location: ../home.php');
     exit();
   }
@@ -61,7 +59,7 @@ if (isset($_POST["logout"])) {
     <div>
       <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
         <?php
-        echo fill_image_life($link, PATH_IMG_FROM_VIEWS);
+          echo fill_image_life($link, PATH_IMG_FROM_VIEWS);
         ?>
       </div>
     </div>

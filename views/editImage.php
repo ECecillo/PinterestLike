@@ -8,11 +8,11 @@ require_once ('.'.PATH_LIB . 'add_funct.php');
 
 $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
 
-if (isset($_POST["edit-root"])) {
+if (isset($_POST["edit-root"])) { // ceci s'applique quand on passe par le root pour l'utilisateur on a simplement fais une redirection à partir du profile
   $image=$_SESSION["current_image"];
   $extension = substr(strrchr($image,'_'),1);
 
-  rename("../assets/img/".$_SESSION["current_image"]."","../assets/img/".$_POST["editDescription"]."_".$extension."");
+  rename(. PATH_IMG_FROM_VIEWS .$_SESSION["current_image"]."",. PATH_IMG_FROM_VIEWS .$_POST["editDescription"]."_".$extension.""); // On rénome la photo dans le dossier assets/images
   $current_image = $_SESSION["current_image"];
   $editFile= "".$_POST["editDescription"]."_".$extension."";
   $editDescription=$_POST["editDescription"];
@@ -28,11 +28,9 @@ if (isset($_POST["logout"])) {
   $check = getUser($_SESSION["pseudo"], $_SESSION["mdp"], $link);
   echo $_SESSION["pseudo"];
 
-  if (getUser($_SESSION["pseudo"], $_SESSION["mdp"], $link)== TRUE) {
+  if ($check) {
     setDisconnected($_SESSION["pseudo"], $link);
-    $_SESSION["pseudo"]= '';
-    $_SESSION["mdp"]='';
-    $_SESSION["logged"]="no";
+    session_unset();
     header('Location: ../home.php');
     exit();
   }

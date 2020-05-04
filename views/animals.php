@@ -6,18 +6,14 @@ require_once ('.'.PATH_LIB . 'utilisateur.php');
 require_once ('.'.PATH_LIB . 'discussion.php');
 require_once ('.'.PATH_LIB . 'add_funct.php');
 
-$link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
+$link = getConnection($dbHost, $dbUser, $dbPwd, $dbName); // Connexion base de donnée
 if (isset($_POST["logout"])) {
 
-  $link = getConnection($dbHost, $dbUser, $dbPwd, $dbName);
   $check = getUser($_SESSION["pseudo"], $_SESSION["mdp"], $link);
-  echo $_SESSION["pseudo"];
 
-  if (getUser($_SESSION["pseudo"], $_SESSION["mdp"], $link)== TRUE) {
+  if ($check) {
     setDisconnected($_SESSION["pseudo"], $link);
-    $_SESSION["pseudo"]= '';
-    $_SESSION["mdp"]='';
-    $_SESSION["logged"]="no";
+    session_unset();
     header('Location: ../home.php');
     exit();
   }
@@ -25,7 +21,7 @@ if (isset($_POST["logout"])) {
 if (isset($_POST["edit"])) {
   $role=get_role($link);
   if($role !='root'){
-    echo "<div>you are not root<div> </br>";
+    header('Location: User_profile.php ');
   }
   else{
     $_SESSION["current_image"]=$_POST["image_now"];
@@ -62,7 +58,7 @@ if (isset($_POST["edit"])) {
   <div>
     <div class="photo-grid" id="fill_image" style="margin: 1rem 1rem;">
       <?php
-        echo fill_image_animals($link, PATH_IMG_FROM_VIEWS);
+        echo fill_image_animals($link, PATH_IMG_FROM_VIEWS); // Affiche les images qui sont dans la catégorie animals, cf voir le fichier addfunction.php dans lib.
       ?>
     </div>
   </div>

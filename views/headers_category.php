@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 <header>
-  <div class="menu-toggle" id="hamburger">
+  <div class="menu-toggle" id="hamburger"> // Pour les mobiles
     <i class="fas fa-bars"></i>
   </div>
   <div class="overlay"></div>
@@ -10,7 +10,7 @@
       <h1 class="brand"><a href="../home.php">Pin<span>ter</span>est</a></h1>
       <ul>
         <li><a href="../home.php">Home</a></li>
-        <?php  if (isset($_SESSION["logged"])){
+        <?php  if (isset($_SESSION["logged"])){ // Si user co on affiche l'onglet ajouter une image
         if ($_SESSION["logged"]=="yes") {
             echo "<li><a href='../AddImage.php'>Add image</a></li>";
           }
@@ -31,13 +31,13 @@
         <?php if (isset($_SESSION["logged"])) {
           if ($_SESSION["logged"] == "yes") {
             $role = get_role($link);
-            if($role =='root'){
+            if($role =='root'){ // Check le role et affiche stat si user co est root 
               echo "
               <li>
                 <a href='stats.php' style='margin: 0 3rem;'>Stats</a>
               </li>";
             }
-            $dateUser = AffDate($_SESSION["date"]);
+            $dateUser = AffDate($_SESSION["date"]); // Affiche la date de l'utilisateur
             echo '
             <li class="log-drop">
               <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin: 0">
